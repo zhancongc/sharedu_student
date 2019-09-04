@@ -6,13 +6,47 @@ Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
+    signature: '',
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
   bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
+    var that = this
+    var packageData = that.data.userInfo
+    packageData.signature = that.data.signature
+    data = { code: res.code, userInfo: packageData }
+    console.log(data)
+    wx.login ({
+      success: res => {
+        console.log(res.code);
+        if (res.code) {
+          wx.request({
+            url: app.globalData.domainUrl + 'admin/weixinUser/login',
+            method: 'post',
+            data: { code: res.code, userInfo: packageData },
+            header: {
+              'Authorization': 'Basic c3R1ZGVudDpzdHVkZW50',
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            success: function (res) {
+              try {
+                console.log(res);
+
+              } catch (e) {
+                console.log(e);
+              }
+            },
+            fail: function (res) {
+              wx.showToast({
+                title: '请稍后重新打开小程序再试',
+              })
+            }
+          })
+        } else {
+          console.log('login failed: ' + res.errMsg)
+        }
+      }
     })
   },
   onLoad: function () {
@@ -48,7 +82,9 @@ Page({
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
+      signature: e.detail.signature,
       hasUserInfo: true
     })
+    this.bindViewTap()
   }
 })
