@@ -14,9 +14,7 @@ Page({
   bindViewTap: function() {
     var that = this
     var packageData = that.data.userInfo
-    packageData.signature = that.data.signature
-    data = { code: res.code, userInfo: packageData }
-    console.log(data)
+    console.log(packageData)
     wx.login ({
       success: res => {
         console.log(res.code);
