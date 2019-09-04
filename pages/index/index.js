@@ -32,7 +32,9 @@ Page({
             success: function (res) {
               try {
                 console.log(res);
-
+                wx.showToast({
+                  title: '登陆成功',
+                })
               } catch (e) {
                 console.log(e);
               }
