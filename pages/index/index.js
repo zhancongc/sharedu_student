@@ -21,11 +21,17 @@ Page({
         if (res.code) {
           wx.request({
             url: app.globalData.domainUrl + 'admin/weixinUser/login',
+            //url: 'http://127.0.0.1/',
             method: 'post',
-            data: { code: res.code, userInfo: packageData },
+            data: { 
+              code: res.code,
+              rawData: that.data.rawData,
+              signature: that.data.signature 
+            },
             header: {
               'Authorization': 'Basic c3R1ZGVudDpzdHVkZW50',
-              'Content-Type': 'application/x-www-form-urlencoded'
+              // 'Content-Type': 'application/x-www-form-urlencoded'
+              'Content-Type': 'application/json'
             },
             success: function (res) {
               try {
@@ -81,7 +87,7 @@ Page({
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
-      userInfo: e.detail.userInfo,
+      rawData: e.detail.rawData,
       signature: e.detail.signature,
       hasUserInfo: true
     })
