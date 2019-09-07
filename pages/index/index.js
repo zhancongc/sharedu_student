@@ -13,24 +13,21 @@ Page({
   //事件处理函数
   bindViewTap: function() {
     var that = this
-    var packageData = that.data.userInfo
-    console.log(packageData)
     wx.login ({
       success: res => {
         console.log(res.code);
         if (res.code) {
+          console.log(JSON.stringify(that.data.rawData))
           wx.request({
             url: app.globalData.domainUrl + 'admin/weixinUser/login',
-            //url: 'http://127.0.0.1/',
             method: 'post',
             data: { 
-              code: res.code,
-              rawData: that.data.rawData,
-              signature: that.data.signature 
+              "code": res.code,
+              "rawData": that.data.rawData,
+              "signature": that.data.signature 
             },
             header: {
               'Authorization': 'Basic c3R1ZGVudDpzdHVkZW50',
-              // 'Content-Type': 'application/x-www-form-urlencoded'
               'Content-Type': 'application/json'
             },
             success: function (res) {
