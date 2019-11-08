@@ -49,10 +49,11 @@
     "mp-weixin" : {
         /* 小程序特有相关 */
         "appid" : "wxd4fcc10a3bfe4d99",
+        "usingComponents" : true,
         "setting" : {
             "urlCheck" : false,
             "es6" : true,
-            "postcss" : false,
+            "postcss" : true,
             "minified" : true
         },
         "permission" : {
