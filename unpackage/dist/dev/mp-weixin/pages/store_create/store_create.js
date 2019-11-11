@@ -170,25 +170,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
     return {
-      invitationCode: '',
-      storeName: '',
-      storeAddress: '',
+      invitationCode: "",
+      owner: "",
+      storeName: "",
+      storeAddress: "",
+      manger: "",
+      managerPhone: "",
       imgList: [] };
 
   },
   methods: {
-    menuTree: function menuTree() {
-      this.newData.forEach(function (item) {
-        item.options.forEach(function (item1) {
-          item1.tital = 110;
-        });
-      });
-      ++this.menuKey; //newData数据嵌套太深，需要这种方式才能渲染出来改变的newData数据
-    },
     setInvitationCode: function setInvitationCode(e) {this.invitationCode = e.detail.value;},
     setStoreName: function setStoreName(e) {this.storeName = e.detail.value;},
     setStoreAddress: function setStoreAddress(e) {this.storeAddress = e.detail.value;},
@@ -198,14 +203,15 @@ var _default =
         success: function success(res) {
           if (res.errMsg == "chooseLocation:ok") {
             //console.log(res)
-            var location = res.address;
-            that.storeAddress = location;
-            //that.$forceUpdate()
+            that.storeAddress = res.address;
+            that.$forceUpdate();
           }
         } });
 
     },
-    ChooseImage: function ChooseImage() {var _this = this;
+    setManager: function setManager(e) {this.manger = e.detail.value;},
+    setManagerPhone: function setManagerPhone(e) {this.managerPhone = e.detail.value;},
+    ChooseImage: function ChooseImage(e) {var _this = this;
       uni.chooseImage({
         count: 4, //默认9
         sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有

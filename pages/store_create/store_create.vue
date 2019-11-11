@@ -19,6 +19,16 @@
 				focus="true" @input="setStoreAddress"></input>
 			<text class='cuIcon-locationfill text-orange' @click="getLocation"></text>
 		</view>
+		<view class="cu-form-group">
+			<view class="title">负责人</view>
+			<input placeholder="请输入商户主要负责人" name="input" type="text" maxlength="12"
+				focus="true" @input="setManager"></input>
+		</view>
+		<view class="cu-form-group">
+			<view class="title">联系手机</view>
+			<input placeholder="请输入负责人手机号码" name="input" type="number" maxlength="11"
+				focus="true" @input="setManagerPhone"></input>
+		</view>
 		<view class="cu-bar bg-white margin-top">
 			<view class="action">
 				上传营业执照
@@ -50,38 +60,34 @@
 	export default {
 		data() {
 			return {
-				invitationCode: '',
-				storeName: '',
-				storeAddress: '',
+				invitationCode: "",
+				owner: "",
+				storeName: "",
+				storeAddress: "",
+				manger: "",
+				managerPhone: "",
 				imgList: [],
 			}
 		},
 		methods: {
-			 menuTree(){
-				this.newData.forEach((item)=>{
-					item.options.forEach((item1)=>{
-						item1.tital=110
-					})
-				})
-				++this.menuKey    //newData数据嵌套太深，需要这种方式才能渲染出来改变的newData数据
-			},
 			setInvitationCode(e) {this.invitationCode = e.detail.value},
 			setStoreName(e) {this.storeName = e.detail.value},
 			setStoreAddress(e) {this.storeAddress = e.detail.value},
 			getLocation(e) {
-				var that= this
+				var that = this;
 				uni.chooseLocation({
 				  success: function (res) {
 					if (res.errMsg == "chooseLocation:ok"){
 						//console.log(res)
-						var location = res.address
-						that.storeAddress = location
-						//that.$forceUpdate()
+						that.storeAddress = res.address
+						that.$forceUpdate()
 					}
 				  }
 				})
 			},
-			ChooseImage() {
+			setManager(e) {this.manger = e.detail.value},
+			setManagerPhone(e) {this.managerPhone = e.detail.value},
+			ChooseImage(e) {
 				uni.chooseImage({
 					count: 4, //默认9
 					sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
