@@ -56,12 +56,11 @@
             "postcss" : true,
             "minified" : true
         },
-        "permission" : {
-            "scope.userLocation" : {
-                "desc" : "获取商户的位置信息，让用户找到最近的商户。获取用户的位置信息，匹配最近的商户。"
-            }
-        }
+        "permission" : {}
     },
+    /*"scope.userLocation" : {
+                "desc" : "获取商户的位置信息，让用户找到最近的商户。获取用户的位置信息，匹配最近的商户。"
+    }*/
     "h5" : {
         "title" : "ColorUi for UniApp",
         "domain" : "demo.color-ui.com"

@@ -35,15 +35,12 @@
     "navigationStyle": "custom",
     "navigationBarTextStyle": "white"
   },
-  "permission": {
-    "scope.userLocation": {
-      "desc": "获取商户的位置信息，让用户找到最近的商户。获取用户的位置信息，匹配最近的商户。"
-    }
-  },
+  "permission": {},
   "usingComponents": {
     "basics": "/pages/basics/home",
     "components": "/pages/component/home",
     "plugin": "/pages/plugin/home",
     "cu-custom": "/colorui/components/cu-custom"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

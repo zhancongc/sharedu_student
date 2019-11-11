@@ -14,7 +14,7 @@
 				focus="true" @input="setStoreName"></input>
 		</view>
 		<view class="cu-form-group">
-			<view class="title">地址</view>
+			<view class="title">详细地址</view>
 			<input placeholder="请输入商户地址" name="input" type="text" maxlength="30" v-model="storeAddress"
 				focus="true" @input="setStoreAddress"></input>
 			<text class='cuIcon-locationfill text-orange' @click="getLocation"></text>
