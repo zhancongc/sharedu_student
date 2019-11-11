@@ -104,8 +104,10 @@
 		}, {
 			"path": "pages/plugin/verticalnav",
 			"style": {}
-		}
-
+		},{
+            "path" : "pages/lesson_add/lesson_add",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"mp-alipay": {

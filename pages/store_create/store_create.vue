@@ -31,25 +31,46 @@
 		</view>
 		<view class="cu-bar bg-white margin-top">
 			<view class="action">
-				上传营业执照
+				上传营业执照图片
 			</view>
 			<view class="action">
-				{{imgList.length}}/4
+				{{licenseImageList.length}}/4
 			</view>
 		</view>
 		<view class="cu-form-group">
 			<view class="grid col-4 grid-square flex-sub">
-				<view class="bg-img" v-for="(item,index) in imgList" :key="index" @tap="ViewImage" :data-url="imgList[index]">
-				 <image :src="imgList[index]" mode="aspectFill"></image>
+				<view class="bg-img" v-for="(item,index) in licenseImageList" :key="index" @tap="ViewImage" :data-url="licenseImageList[index]">
+				 <image :src="licenseImageList[index]" mode="aspectFill"></image>
 					<view class="cu-tag bg-red" @tap.stop="DelImg" :data-index="index">
 						<text class='cuIcon-close'></text>
 					</view>
 				</view>
-				<view class="solids" @tap="ChooseImage" v-if="imgList.length<4">
+				<view class="solids" @tap="ChooseImage" v-if="licenseImageList.length<4">
 					<text class='cuIcon-cameraadd'></text>
 				</view>
 			</view>
 		</view>
+        <view class="cu-bar bg-white margin-top">
+        	<view class="action">
+        		上传商户经营场所图片
+        	</view>
+        	<view class="action">
+        		{{storeImageList.length}}/4
+        	</view>
+        </view>
+        <view class="cu-form-group">
+        	<view class="grid col-4 grid-square flex-sub">
+        		<view class="bg-img" v-for="(item,index) in storeImageList" :key="index" @tap="ViewImage" :data-url="storeImageList[index]">
+        		 <image :src="storeImageList[index]" mode="aspectFill"></image>
+        			<view class="cu-tag bg-red" @tap.stop="DelImg" :data-index="index">
+        				<text class='cuIcon-close'></text>
+        			</view>
+        		</view>
+        		<view class="solids" @tap="ChooseImage" v-if="storeImageList.length<4">
+        			<text class='cuIcon-cameraadd'></text>
+        		</view>
+        	</view>
+        </view>
 		<view class="padding flex flex-direction">
 			<button class="cu-btn bg-mauve margin-tb-sm lg" @click="createCommit">提交</button>
 		</view>
@@ -66,7 +87,8 @@
 				storeAddress: "",
 				manger: "",
 				managerPhone: "",
-				imgList: [],
+				licenseImageList: [],
+                storeImageList: []
 			}
 		},
 		methods: {
@@ -87,39 +109,39 @@
 			},
 			setManager(e) {this.manger = e.detail.value},
 			setManagerPhone(e) {this.managerPhone = e.detail.value},
-			ChooseImage(e) {
-				uni.chooseImage({
-					count: 4, //默认9
-					sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-					sourceType: ['album'], //从相册选择
-					success: (res) => {
-						if (this.imgList.length != 0) {
-							this.imgList = this.imgList.concat(res.tempFilePaths)
-						} else {
-							this.imgList = res.tempFilePaths
-						}
-					}
-				});
-			},
-			ViewImage(e) {
-				uni.previewImage({
-					urls: this.imgList,
-					current: e.currentTarget.dataset.url
-				});
-			},
-			DelImg(e) {
-				uni.showModal({
-					title: '你好',
-					content: '确定要删除图片吗？',
-					cancelText: '取消',
-					confirmText: '确定',
-					success: res => {
-						if (res.confirm) {
-							this.imgList.splice(e.currentTarget.dataset.index, 1)
-						}
-					}
-				})
-			},
+            ChooseImage(e) {
+                    uni.chooseImage({
+                            count: 4, //默认9
+                            sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+                            sourceType: ['album'], //从相册选择
+                            success: (res) => {
+                                    if (this.storeImageList.length != 0) {
+                                            this.storeImageList = this.storeImageList.concat(res.tempFilePaths)
+                                    } else {
+                                            this.storeImageList = res.tempFilePaths
+                                    }
+                            }
+                    });
+            },
+            ViewImage(e) {
+                    uni.previewImage({
+                            urls: this.storeImageList,
+                            current: e.currentTarget.dataset.url
+                    });
+            },
+            DelImg(e) {
+                    uni.showModal({
+                            title: '你好',
+                            content: '确定要删除图片吗？',
+                            cancelText: '取消',
+                            confirmText: '确定',
+                            success: res => {
+                                    if (res.confirm) {
+                                            this.storeImageList.splice(e.currentTarget.dataset.index, 1)
+                                    }
+                            }
+                    })
+            },
 			createCommit(e){
 				uni.request({
 					method: "POST",
