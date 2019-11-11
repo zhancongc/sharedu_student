@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/store_create/store_create",
     "pages/index/index",
     "pages/basics/layout",
     "pages/basics/background",
@@ -25,13 +26,12 @@
     "pages/plugin/indexes",
     "pages/plugin/animation",
     "pages/plugin/drawer",
-    "pages/plugin/verticalnav",
-    "pages/index/store_create/store_create"
+    "pages/plugin/verticalnav"
   ],
   "subPackages": [],
   "window": {
-    "navigationBarBackgroundColor": "#0081ff",
-    "navigationBarTitleText": "ColorUi for UniApp",
+    "navigationBarBackgroundColor": "#9c26b0",
+    "navigationBarTitleText": "享淘课",
     "navigationStyle": "custom",
     "navigationBarTextStyle": "white"
   },

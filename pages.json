@@ -2,6 +2,10 @@
 	"pages": [
 		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+		    "path" : "pages/store_create/store_create",
+		    "style" : {}
+		},
+		{
 			"path": "pages/index/index",
 			"style": {}
 		},
@@ -101,10 +105,7 @@
 			"path": "pages/plugin/verticalnav",
 			"style": {}
 		}
-	    ,{
-            "path" : "pages/index/store_create/store_create",
-            "style" : {}
-        }
+
     ],
 	"globalStyle": {
 		"mp-alipay": {
@@ -112,8 +113,8 @@
 			"transparentTitle": "always",
 			"allowsBounceVertical": "NO"
 		},
-		"navigationBarBackgroundColor": "#0081ff",
-		"navigationBarTitleText": "ColorUi for UniApp",
+		"navigationBarBackgroundColor": "#9c26b0",
+		"navigationBarTitleText": "享淘课",
 		"navigationStyle": "custom",
 		"navigationBarTextStyle": "white"
 	},
@@ -121,8 +122,8 @@
 		"condition": { //模式配置，仅开发期间生效
 		"current": 0, //当前激活的模式(list 的索引项)
 		"list": [{
-				"name": "表单", //模式名称
-				"path": "pages/component/form", //启动页面
+				"name": "create store", //模式名称
+				"path": "pages/store_create/store_create", //启动页面
 				"query": "" //启动参数
 			}
 		]
