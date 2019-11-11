@@ -5,28 +5,28 @@
 		</cu-custom>
 		<view class="cu-form-group margin-top">
 			<view class="title">邀请码</view>
-			<input placeholder="请输入代理商提供的邀请码" name="input" type="text" maxlength="10" 
+			<input placeholder="请输入代理商提供的邀请码"  type="text" maxlength="10" 
 				focus="false" @input="setInvitationCode"></input>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">商户名称</view>
-			<input placeholder="请输入商户名称" name="input" type="text" maxlength="30"
+			<input placeholder="请输入商户名称"  type="text" maxlength="20"
 				focus="true" @input="setStoreName"></input>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">详细地址</view>
-			<input placeholder="请输入商户地址" name="input" type="text" maxlength="30" v-model="storeAddress"
+			<input placeholder="请输入商户地址"  type="text" maxlength="30" v-model="storeAddress"
 				focus="true" @input="setStoreAddress"></input>
 			<text class='cuIcon-locationfill text-orange' @click="getLocation"></text>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">负责人</view>
-			<input placeholder="请输入商户主要负责人" name="input" type="text" maxlength="12"
+			<input placeholder="请输入商户主要负责人"  type="text" maxlength="12"
 				focus="true" @input="setManager"></input>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">联系手机</view>
-			<input placeholder="请输入负责人手机号码" name="input" type="number" maxlength="11"
+			<input placeholder="请输入负责人手机号码"  type="number" maxlength="11"
 				focus="true" @input="setManagerPhone"></input>
 		</view>
 		<view class="cu-bar bg-white margin-top">

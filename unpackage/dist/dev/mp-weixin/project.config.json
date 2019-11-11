@@ -33,7 +33,7 @@
           "name": "create store",
           "query": "",
           "id": 0,
-          "pathName": "pages/store_create/store_create"
+          "pathName": "pages/lesson_add/lesson_add"
         }
       ]
     }
