@@ -27,12 +27,18 @@
       "list": []
     },
     "miniprogram": {
-      "current": 0,
+      "current": 1,
       "list": [
         {
           "name": "create store",
           "query": "",
           "id": 0,
+          "pathName": "pages/store_create/store_create"
+        },
+        {
+          "name": "add lesson",
+          "query": "",
+          "id": 1,
           "pathName": "pages/lesson_add/lesson_add"
         }
       ]
