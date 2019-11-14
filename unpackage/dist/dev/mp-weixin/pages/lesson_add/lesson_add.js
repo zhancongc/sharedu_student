@@ -160,12 +160,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
-//
-//
-//
-//
-//
-//
 var _default =
 {
   data: function data() {
@@ -174,15 +168,24 @@ var _default =
       lessonType: '',
       lessonTimes: '',
       lessonPrice: '',
-      lessonIntro: '' };
+      lessonIntro: '',
+      multiArray: [
+      ['中小学文化课', '体育竞技', '文化艺术'],
+      ['语文', '数学', '英语', '物理', '化学', '生物']],
+
+      multiIndex: [0, 0] };
 
   },
   methods: {
     setLessonName: function setLessonName(e) {this.lessonName = e.detail.value;},
-    setLessonType: function setLessonType(e) {this.lessonType = e.detail.value;},
     setLessonTimes: function setLessonTimes(e) {this.lessonTimes = e.detail.value;},
     setLessonPrice: function setLessonPrice(e) {this.lessonPrice = e.detail.value;},
     setLessonIntro: function setLessonIntro(e) {this.lessonIntro = e.detail.value;},
+    MultiChange: function MultiChange(e) {
+      this.multiIndex = e.detail.value;
+      this.lessonType = this.multiArray[1][this.multiIndex[1]];
+      console.log("lessonType", this.lessonType);
+    },
     MultiColumnChange: function MultiColumnChange(e) {
       var data = {
         multiArray: this.multiArray,
@@ -193,57 +196,25 @@ var _default =
         case 0:
           switch (data.multiIndex[0]) {
             case 0:
-              data.multiArray[1] = ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物'];
-              data.multiArray[2] = ['猪肉绦虫', '吸血虫'];
+              data.multiArray[1] = ['语文', '数学', '英语', '物理', '化学', '生物'];
+              data.multiIndex[1] = 0;
               break;
             case 1:
-              data.multiArray[1] = ['鱼', '两栖动物', '爬行动物'];
-              data.multiArray[2] = ['鲫鱼', '带鱼'];
+              data.multiArray[1] = ['游泳', '冲浪', '潜水', '瑜伽', '射箭', '举重', '围棋', '中国象棋', '国际象棋'];
+              data.multiIndex[1] = 0;
+              break;
+            case 2:
+              data.multiArray[1] = ['钢琴', '小提琴', '贝斯', '吉他', '萨克斯', '萧笛', '古筝', '二胡', '琵琶'];
+              data.multiIndex[1] = 0;
               break;}
 
-          data.multiIndex[1] = 0;
-          data.multiIndex[2] = 0;
-          break;
         case 1:
-          switch (data.multiIndex[0]) {
-            case 0:
-              switch (data.multiIndex[1]) {
-                case 0:
-                  data.multiArray[2] = ['猪肉绦虫', '吸血虫'];
-                  break;
-                case 1:
-                  data.multiArray[2] = ['蛔虫'];
-                  break;
-                case 2:
-                  data.multiArray[2] = ['蚂蚁', '蚂蟥'];
-                  break;
-                case 3:
-                  data.multiArray[2] = ['河蚌', '蜗牛', '蛞蝓'];
-                  break;
-                case 4:
-                  data.multiArray[2] = ['昆虫', '甲壳动物', '蛛形动物', '多足动物'];
-                  break;}
-
-              break;
-            case 1:
-              switch (data.multiIndex[1]) {
-                case 0:
-                  data.multiArray[2] = ['鲫鱼', '带鱼'];
-                  break;
-                case 1:
-                  data.multiArray[2] = ['青蛙', '娃娃鱼'];
-                  break;
-                case 2:
-                  data.multiArray[2] = ['蜥蜴', '龟', '壁虎'];
-                  break;}
-
-              break;}
-
-          data.multiIndex[2] = 0;
+          data.multiIndex[1] = e.detail.value;
           break;}
 
       this.multiArray = data.multiArray;
       this.multiIndex = data.multiIndex;
+      this.$forceUpdate();
     } } };exports.default = _default;
 
 /***/ }),

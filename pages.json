@@ -108,6 +108,10 @@
             "path" : "pages/lesson_add/lesson_add",
             "style" : {}
         }
+        ,{
+            "path" : "pages/teacher_register/teacher_register",
+            "style" : {}
+        }
     ],
     "globalStyle": {
         "mp-alipay": {
