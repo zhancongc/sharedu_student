@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/store_create/store_create",
+    "pages/catalog/catalog",
     "pages/index/index",
     "pages/basics/layout",
     "pages/basics/background",
@@ -27,8 +27,10 @@
     "pages/plugin/animation",
     "pages/plugin/drawer",
     "pages/plugin/verticalnav",
+    "pages/store_create/store_create",
     "pages/lesson_add/lesson_add",
-    "pages/teacher_register/teacher_register"
+    "pages/teacher_register/teacher_register",
+    "pages/tutor_add/tutor_add"
   ],
   "subPackages": [],
   "window": {
