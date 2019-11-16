@@ -30,9 +30,30 @@
 		    <view class="title">课程介绍</view>
 		    <textarea maxlength="140" :disabled="modalName!=null" @input="setLessonIntro" placeholder="请输入课程介绍"></textarea>
 		</view>
-        <view class="padding flex flex-direction">
-        	<button class="cu-btn bg-mauve margin-tb-sm lg" @click="createCommit">提交</button>
-        </view>
+		<view class="cu-bar bg-white margin-top">
+		    <view class="action">
+		        上传课程图片
+		    </view>
+		    <view class="action">
+		        {{lessonImage.length}}/4
+		    </view>
+		</view>
+		<view class="cu-form-group">
+		    <view class="grid col-4 grid-square flex-sub">
+		        <view class="bg-img" v-for="(item,index) in lessonImage" :key="index" @tap="ViewImage" :data-url="lessonImage[index]">
+		         <image :src="lessonImage[index]" mode="aspectFill"></image>
+		            <view class="cu-tag bg-red" @tap.stop="DelImg" :data-index="index">
+		                <text class='cuIcon-close'></text>
+		            </view>
+		        </view>
+		        <view class="solids" @tap="ChooseImage" v-if="lessonImage.length<4">
+		            <text class='cuIcon-cameraadd'></text>
+		        </view>
+		    </view>
+		</view>
+		<view class="padding flex flex-direction">
+			<button class="cu-btn bg-mauve margin-tb-sm lg" @click="createCommit">提交</button>
+		</view>
 	</view>
 </template>
 
@@ -49,7 +70,8 @@
 					['中小学文化课', '体育竞技', '文化艺术'],
 					['语文', '数学', '英语', '物理', '化学', '生物']
 				],
-				multiIndex: [0, 0]
+				multiIndex: [0, 0],
+				lessonImage: []
 			}
 		},
 		methods: {
@@ -91,6 +113,39 @@
 			    this.multiArray = data.multiArray;
 			    this.multiIndex = data.multiIndex;
 				this.$forceUpdate();
+			},
+			ChooseImage(e) {
+			        uni.chooseImage({
+			                count: 4, //默认9
+			                sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+			                sourceType: ['album'], //从相册选择
+			                success: (res) => {
+			                        if (this.lessonImage.length != 0) {
+			                                this.lessonImage = this.lessonImage.concat(res.tempFilePaths)
+			                        } else {
+			                                this.lessonImage = res.tempFilePaths
+			                        }
+			                }
+			        });
+			},
+			ViewImage(e) {
+			        uni.previewImage({
+			                urls: this.lessonImage,
+			                current: e.currentTarget.dataset.url
+			        });
+			},
+			DelImg(e) {
+			        uni.showModal({
+			                title: '你好',
+			                content: '确定要删除图片吗？',
+			                cancelText: '取消',
+			                confirmText: '确定',
+			                success: res => {
+			                        if (res.confirm) {
+			                                this.lessonImage.splice(e.currentTarget.dataset.index, 1)
+			                        }
+			                }
+			        })
 			},
 		}
 	}

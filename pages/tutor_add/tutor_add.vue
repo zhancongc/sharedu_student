@@ -24,51 +24,78 @@
 				</view>
 			</view>
 		</view>
-		<view class="cu-card case no-card">
-			<view class="cu-item shadow">
-				<view class="image">
-					<image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg"
-					 mode="widthFix"></image>
-					<view class="cu-tag bg-blue">史诗</view>
-					<view class="cu-bar bg-shadeBottom"> <text class="text-cut">我已天理为凭，踏入这片荒芜，不再受凡人的枷锁遏制。我已天理为凭，踏入这片荒芜，不再受凡人的枷锁遏制。</text></view>
-				</view>
-				<view class="cu-list menu-avatar">
-					<view class="cu-item">
-						<view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
-						<view class="content flex-sub">
-							<view class="text-grey">正义天使 凯尔</view>
-							<view class="text-gray text-sm flex justify-between">
-								十天前
-								<view class="text-gray text-sm">
-									<text class="cuIcon-attentionfill margin-lr-xs"></text> 10
-									<text class="cuIcon-appreciatefill margin-lr-xs"></text> 20
-									<text class="cuIcon-messagefill margin-lr-xs"></text> 30
-								</view>
-							</view>
-						</view>
-					</view>
-				</view>
+		<form v-if="num == 0" id="tutor">
+			<view class="cu-form-group margin-top">
+				<view class="title">姓名</view>
+				<input placeholder="请输入您的姓名" :value="tutor.name" name="name" maxlength="10"></input>
 			</view>
+			<view class="cu-form-group">
+				<view class="title">性别</view>
+				<input placeholder="请输入您的性别" :value="tutor.gender" name="gender" maxlength="6"></input>
+			</view>
+			<view class="cu-form-group">
+			    <view class="title">城市</view>
+			    <picker mode="region" @change="RegionChange" :value="region" name="region" maxlength="20">
+			        <view class="picker" style="text-align: left;">
+			            {{region[0]}}，{{region[1]}}，{{region[2]}}
+			        </view>
+			    </picker>
+			</view>
+			<view class="cu-form-group">
+			    <view class="title">学历</view>
+			    <picker @change="degreeChange" :range="degree" :value="tutor.degree" name="degree" maxlength="2">
+			        <view class="picker" style="text-align: left;">
+			            {{degreeIndex>-1?degree[degreeIndex]:'请选择学历'}}
+			        </view>
+			    </picker>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">学校</view>
+				<input placeholder="请输入您毕业或在读的学校" :value="tutor.college" name="college" maxlength="20"></input>
+			</view>
+		</form>
+		<form v-if="num == 1">
+			<view class="cu-form-group margin-top">
+				<view class="title">姓名</view>
+				<input placeholder="两字短标题" name="input"></input>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">性别</view>
+				<input placeholder="三字标题" name="input" :value="tutor.gender" disabled="true"></input>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">头像</view>
+				<input placeholder="三字标题" name="input"></input>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">生日</view>
+				<input placeholder="三字标题" name="input"></input>
+			</view>
+		</form>
+		<view class="padding flex flex-direction">
+			<button form-type="submit" class="cu-btn bg-mauve margin-tb-sm lg" @click="tutorSubmit">提交</button>
 		</view>
 	</view>
 </template>
 
 <script>
+	var validator = require('wxvalidator');
 	export default {
 		data() {
 			return {
 				// 基本信息
 				tutor: {
-					name: '',
-					gender: '',
-					avatar: '',
-					birth_date: '',
-					phone: '',
+					name: 'iris', // from wechat
+					gender: 'male', // from wechat
+					city: 'shanghai',  // 
+					avatar: '', // from wechat
+					phone: '15821381315', // from register
+					college: 'jiangsu university',
+					degree: 'bachelor'
 				},
-				// 教育经历
-				college: [
-					// {name: '', major: '', start_date: '', end_data: '',}
-				],
+				region: ['重庆市', '重庆市', '渝中区'],
+				degreeIndex: -1,
+				degree: ['大专', '本科', '硕士', '博士'],
 				// 相关技能
 				skill: [
 					// {name: '', description: ''}
@@ -89,10 +116,6 @@
 				numList: [{
 					name: '基本信息'
 				}, {
-					name: '专业能力'
-				}, {
-					name: '工作经历'
-				}, {
 					name: '实名认证'
 				}, ],
 				num: 0
@@ -102,17 +125,29 @@
 			NextSteps() {
 				if (this.num < this.numList.length - 1) {
 					this.num = this.num + 1;
-				}			
+				}
 			},
 			PreviousSteps() {
 				if (this.num > 0) {
 					this.num = this.num - 1;
-				}			
+				}
 			},
+			degreeChange(e) {
+				this.degreeIndex = e.detail.value;
+			},
+			RegionChange(e) {
+			    this.region = e.detail.value;
+			},
+			tutorSubmit(e){
+				let formData = e.detail.data;
+				console.log(formData);
+			}
 		}
 	}
 </script>
 	
 <style>
-
+.cu-form-group .title {
+    min-width: calc(4em + 15px);
+}
 </style>
