@@ -22,6 +22,12 @@
 					<text class="text-grey">家教注册</text>
 				</view>
 			</view>
+            <view class="cu-item" :class="menuArrow?'arrow':''">
+            	<view class="content" @click="toTutorWanted">
+            		<image src="/static/logo.png" class="png" mode="aspectFit"></image>
+            		<text class="text-grey">家教线索</text>
+            	</view>
+            </view>
 		</view>
 	</view>
 </template>
@@ -57,7 +63,15 @@
 					fail: () => {},
 					complete: () => {}
 				});
-			}
+			},
+            toTutorWanted(){
+            	uni.navigateTo({
+            		url: '/pages/tutor_wanted/tutor_wanted',
+            		success: res => {},
+            		fail: () => {},
+            		complete: () => {}
+            	});
+            }
 		}
 	}
 </script>

@@ -89,10 +89,11 @@
             "path" : "pages/lesson_add/lesson_add",
             "style" : {}
         },{
-            "path" : "pages/teacher_register/teacher_register",
-            "style" : {}
-        },{
             "path" : "pages/tutor_add/tutor_add",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/tutor_wanted/tutor_wanted",
             "style" : {}
         }
     ],

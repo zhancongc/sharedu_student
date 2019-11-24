@@ -29,8 +29,8 @@
     "pages/plugin/verticalnav",
     "pages/store_create/store_create",
     "pages/lesson_add/lesson_add",
-    "pages/teacher_register/teacher_register",
-    "pages/tutor_add/tutor_add"
+    "pages/tutor_add/tutor_add",
+    "pages/tutor_wanted/tutor_wanted"
   ],
   "subPackages": [],
   "window": {
@@ -45,6 +45,5 @@
     "components": "/pages/component/home",
     "plugin": "/pages/plugin/home",
     "cu-custom": "/colorui/components/cu-custom"
-  },
-  "sitemapLocation": "sitemap68.json"
+  }
 }
