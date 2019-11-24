@@ -13,11 +13,11 @@
 		<form v-if="num == 0" id="basic">
 			<view class="cu-form-group margin-top">
 				<view class="title">标题</view>
-				<input placeholder="请简要描述家教要求" :value="basic.title" name="title" maxlength="10"></input>
+				<input placeholder="请简要描述家教要求" :value="basicTitle" name="basicTitle" maxlength="30"></input>
 			</view>
             <view class="cu-form-group">
             	<view class="title">手机</view>
-            	<input placeholder="请输入您的手机号码" :value="basic.phone" name="phone" maxlength="11"></input>
+            	<input placeholder="请输入您的手机号码" :value="basicPhone" name="basicPhone" maxlength="11"></input>
                 <view class="cu-capsule radius">
                     <button open-type="getPhoneNumber" @getphonenumber="getPhoneNumber" class="getPhoneNumber">
                     <view class='cu-tag bg-blue '>
@@ -31,28 +31,52 @@
             </view>
 			<view class="cu-form-group">
 			    <view class="title">城市</view>
-			    <picker mode="region" @change="RegionChange" :value="region" name="region" maxlength="20">
+			    <picker mode="region" @change="basicCityChange" :value="basicCity" name="basicCity" maxlength="20">
 			        <view class="picker" style="text-align: left;">
-			            {{region[0]}}，{{region[1]}}，{{region[2]}}
+			            {{basicCity[0]}}，{{basicCity[1]}}，{{basicCity[2]}}
 			        </view>
 			    </picker>
+			</view>
+			<view class="cu-bar bg-white">
+				<view class="action">
+					<text class="cuIcon-title text-orange "></text> 授课时间
+				</view>
+				<view class="action">
+					<button class="cu-btn bg-green shadow" @tap="showModal" data-target="ChooseModal">Choose</button>
+				</view>
+			</view>
+			<view class="cu-modal bottom-modal" :class="modalName=='ChooseModal'?'show':''" @tap="hideModal">
+				<view class="cu-dialog" @tap.stop="">
+					<view class="cu-bar bg-white">
+						<view class="action text-blue" @tap="hideModal">取消</view>
+						<view class="action text-green" @tap="hideModal">确定</view>
+					</view>
+					<view class="grid col-3 padding-sm">
+						<view v-for="(item,index) in checkbox" class="padding-xs" :key="index">
+							<button class="cu-btn orange lg block" :class="item.checked?'bg-orange':'line-orange'" @tap="ChooseCheckbox"
+							 :data-value="item.value"> {{item.name}}
+								<view class="cu-tag sm round" :class="item.checked?'bg-white text-orange':'bg-orange'" v-if="item.hot">热门</view>
+							</button>
+						</view>
+					</view>
+				</view>
 			</view>
 		</form>
 		<form v-if="num == 1" id="student">
             <view class="cu-form-group">
                 <view class="title">性别</view>
-                <picker @change="genderChange" :range="gender" :value="tutor.degree" name="degree" maxlength="2">
+                <picker @change="studentGenderChange" :range="gender" :value="studentGender" name="studentGender" maxlength="1">
                     <view class="picker" style="text-align: left;">
-                        {{degreeIndex>-1?degree[degreeIndex]:'请选择学生性别'}}
+                        {{studentGenderIndex>-1?gender[studentGenderIndex]:'请选择学生性别'}}
                     </view>
                 </picker>
             </view>
 			<view class="cu-form-group">
 				<view class="title">科目</view>
-				<input placeholder="请简要描述" :value="basic.title" name="title" maxlength="10"></input>
+				<input placeholder="请简要描述" :value="subject" name="title" maxlength="10"></input>
 			</view>
             <view class="cu-form-group">
-                <view class="title">大致地址</view>
+                <view class="title">地址</view>
                 <input placeholder="请输入大致地址,精确到小区名即可"  type="text" maxlength="30" v-model="storeAddress"
                     focus="true" @input="setStoreAddress"></input>
                 <text class='cuIcon-locationfill text-orange' @click="getLocation"></text>
@@ -65,9 +89,9 @@
         <form v-if="num==2" id="tutor">
             <view class="cu-form-group">
                 <view class="title">性别</view>
-                <picker @change="genderChange" :range="gender" :value="tutor.gender" name="gender" maxlength="2">
+                <picker @change="tutorGenderChange" :range="gender" :value="tutorGender" name="tutorGender" maxlength="1">
                     <view class="picker" style="text-align: left;">
-                        {{degreeIndex>-1?degree[degreeIndex]:'请选择性别'}}
+                        {{tutorGenderIndex>-1?gender[tutorGenderIndex]:'请选择性别'}}
                     </view>
                 </picker>
             </view>
@@ -91,7 +115,7 @@
         		<button class="cu-btn bg-green shadow" @tap="NextSteps">下一步</button>
         	</view>
         	<view class="action" v-if="num==2">
-        		<button class="cu-btn bg-green shadow">提 交</button>
+        		<button class="cu-btn bg-green shadow" @click="tutorSubmit">提 交</button>
         	</view>
         </view>
 	</view>
@@ -102,29 +126,59 @@
 	export default {
 		data() {
 			return {
-				// 基本信息
-				basic: {
-                    title: '', // 
-                    phone: '', //
-                    city: '', //
-                    teachTime: '', // 授课时间
-                    canNegotiate: true // 是否可以协商
-				},
-                student: {
-                    gender: '', // 学生性别
-                    subject: '', // 科目
-                    detailAddress: '', // 大致地址，最多精确到小区
-                    intro: '', // 学生情况描述
-                },
-                tutor: {
-                    gender: '', // 家教性别
-                    salary: 0, // 薪水，元/小时
-                    duration: 0 ,
-                    teachVia: '', // 家教上门，在线视频
-                    request: '' // 对家教的要求
-                },
-				region: ['重庆市', '重庆市', '渝中区'],
-				genderIndex: -1,
+				// basic
+				basicTitle: '',
+				basicPhone: '',
+				basicCity: ['重庆市', '重庆市', '渝中区'],
+				teachTime: '', // 授课时间
+				modalName: '',
+				checkbox: [{
+					value: 0,
+					name: '周日',
+					checked: false,
+					hot: false,
+				}, {
+					value: 1,
+					name: '周一',
+					checked: false,
+					hot: false,
+				},{
+					value: 2,
+					name: '周二',
+					checked: false,
+					hot: false,
+				},{
+					value: 3,
+					name: '周三',
+					checked: false,
+					hot: false,
+				},{
+					value: 4,
+					name: '周四',
+					checked: false,
+					hot: false,
+				},{
+					value: 5,
+					name: '周五',
+					checked: false,
+					hot: false,
+				},{
+					value: 6,
+					name: '周六',
+					checked: false,
+					hot: false,
+				}],
+				teachVia: '', // 家教上门，在线视频
+				detailAddress: '', // 详细地址
+				// student
+				studentGenderIndex: -1,
+				subject: '',
+				studentIntro: '', // 学生情况描述
+				// tutor 
+				tutorGenderIndex: -1,
+				salary: 0, // 薪水，元/小时
+				duration: 0 , // 每次时长
+				request: '' ,// 对家教的要求
 				gender: ['男', '女'],
 				numList: [{
 					name: '基本信息'
@@ -156,12 +210,34 @@
 			degreeChange(e) {
 				this.degreeIndex = e.detail.value;
 			},
-			RegionChange(e) {
-			    this.region = e.detail.value;
+			basicCityChange(e) {
+			    this.basicCity = e.detail.value;
+			},
+			showModal(e) {
+				console.log(e.currentTarget.dataset.target);
+				this.modalName = e.currentTarget.dataset.target
+			},
+			hideModal(e) {
+				this.modalName = null
+			},
+			ChooseCheckbox(e) {
+				let items = this.checkbox;
+				let values = e.currentTarget.dataset.value;
+				for (let i = 0, lenI = items.length; i < lenI; ++i) {
+					if (items[i].value == values) {
+						items[i].checked = !items[i].checked;
+						break
+					}
+				}
+			},
+			studentGenderChange(e) {
+				this.studentGenderIndex = e.detail.value;
+			},
+			tutorGenderChange(e) {
+				this.tutorGenderIndex = e.detail.value;
 			},
             setStudentIntro (e) {
-                this.student.intro = e.detail.value;
-                this.$forceUpdate();
+                this.studentIntro = e.detail.value;
             },
             ChooseIdCardImage(e) {
                 uni.chooseImage({
@@ -255,5 +331,10 @@
 }
 .getPhoneNumber::after{
     border: 0;
+}
+button .cu-tag {
+	position: absolute;
+	top: 8upx;
+	right: 8upx;
 }
 </style>

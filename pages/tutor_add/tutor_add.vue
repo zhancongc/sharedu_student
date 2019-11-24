@@ -3,20 +3,6 @@
 		<cu-custom bgColor="bg-gradual-pink" :isBack="true">
 			<block slot="backText">返回</block><block slot="content">完善家教信息</block>
 		</cu-custom>
-		<!--view class="cu-bar bg-white solid-bottom margin-top">
-			<view class="action">
-				<button class="cu-btn bg-green shadow" @tap="PreviousSteps" v-if="num!=0">上一步</button>
-			</view>
-			<view class="action">
-				<text class="cuIcon-title text-orange"></text>完善家教信息
-			</view>
-			<view class="action" v-if="num!=3">
-				<button class="cu-btn bg-green shadow" @tap="NextSteps">下一步</button>
-			</view>
-			<view class="action" v-if="num==3">
-				<button class="cu-btn bg-green shadow" v-if="num==3">提 交</button>
-			</view>
-		</view-->
 		<view class="bg-white padding">
 			<view class="cu-steps">
 				<view class="cu-item" :class="index>num?'':'text-blue'" v-for="(item,index) in numList" :key="index">
@@ -119,8 +105,8 @@
         	<view class="action" v-if="num!=0">
         		<button class="cu-btn bg-green shadow" @tap="PreviousSteps">上一步</button>
         	</view>
-        	<view class="action" v-if="num==0" style="">
-        		<button class="cu-btn bg-green shadow" @tap="NextSteps" style="position: absolute; right: 0rpx;">下一步</button>
+        	<view class="action" v-if="num==0" style="position: absolute; right: 0px;">
+        		<button class="cu-btn bg-green shadow" @tap="NextSteps">下一步</button>
         	</view>
         	<view class="action" v-if="num==1">
         		<button class="cu-btn bg-green shadow">提 交</button>

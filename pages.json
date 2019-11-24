@@ -108,9 +108,9 @@
         "navigationStyle": "custom",
         "navigationBarTextStyle": "white"
     },
-    "usingComponts": false,
+    "usingComponts": true,
         "condition": { //模式配置，仅开发期间生效
-        "current": 2, //当前激活的模式(list 的索引项)
+        "current": 0, //当前激活的模式(list 的索引项)
         "list": [
 			{
 			    "name": "create store", //模式名称
