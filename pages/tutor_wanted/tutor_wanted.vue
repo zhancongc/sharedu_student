@@ -38,9 +38,12 @@
 			    </picker>
 			</view>
 			<view class="cu-bar bg-white">
-				<view class="action">
+				<view class="title" style="font-size: 30rpx; padding: 1rpx 30rpx;color:#333;">授课时间</view>
+					<text v-for="(item,index) in checkbox" class="padding-xs" :key="index">
+						{{item.checked?item.name:''}}</text>
+				<!--view class="action">
 					<text class="cuIcon-title text-orange "></text> 授课时间
-				</view>
+				</view-->
 				<view class="action">
 					<button class="cu-btn bg-green shadow" @tap="showModal" data-target="ChooseModal">Choose</button>
 				</view>
