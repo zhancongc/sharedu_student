@@ -96,6 +96,10 @@
             "path" : "pages/tutor_wanted/tutor_wanted",
             "style" : {}
         }
+        ,{
+            "path" : "pages/tutors/tutors",
+            "style" : {}
+        }
     ],
     "globalStyle": {
         "mp-alipay": {

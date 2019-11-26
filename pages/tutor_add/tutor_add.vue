@@ -122,15 +122,15 @@
 			return {
 				// 基本信息
 				tutor: {
-					name: 'iris', // from wechat
-					gender: 'male', // from wechat
-					city: 'shanghai',  // 
+					name: '', // from wechat
+					gender: '', // from wechat
+					city: '',  // 
 					avatar: '', // from wechat
-					phone: '15821381315', // from register
-					college: 'jiangsu university',
-					degree: 'bachelor'
+					phone: '', // from register
+					college: '',
+					degree: ''
 				},
-				region: ['重庆市', '重庆市', '渝中区'],
+				region: ['北京市', '北京市', '东城区'],
 				degreeIndex: -1,
 				degree: ['大专', '本科', '硕士', '博士'],
 				// 相关技能

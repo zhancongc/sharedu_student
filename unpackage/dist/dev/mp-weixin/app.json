@@ -30,7 +30,8 @@
     "pages/store_create/store_create",
     "pages/lesson_add/lesson_add",
     "pages/tutor_add/tutor_add",
-    "pages/tutor_wanted/tutor_wanted"
+    "pages/tutor_wanted/tutor_wanted",
+    "pages/tutors/tutors"
   ],
   "subPackages": [],
   "window": {
@@ -45,6 +46,5 @@
     "components": "/pages/component/home",
     "plugin": "/pages/plugin/home",
     "cu-custom": "/colorui/components/cu-custom"
-  },
-  "sitemapLocation": "sitemap42.json"
+  }
 }
