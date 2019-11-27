@@ -163,6 +163,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -171,6 +181,14 @@ var _default =
 
   },
   methods: {
+    toIndex: function toIndex(e) {
+      uni.navigateTo({
+        url: '/pages/index/index',
+        success: function success(res) {},
+        fail: function fail() {},
+        complete: function complete() {} });
+
+    },
     toStoreCreate: function toStoreCreate() {
       uni.navigateTo({
         url: '/pages/store_create/store_create',
@@ -198,6 +216,14 @@ var _default =
     toTutorWanted: function toTutorWanted() {
       uni.navigateTo({
         url: '/pages/tutor_wanted/tutor_wanted',
+        success: function success(res) {},
+        fail: function fail() {},
+        complete: function complete() {} });
+
+    },
+    toTutors: function toTutors() {
+      uni.navigateTo({
+        url: '/pages/tutors/tutors',
         success: function success(res) {},
         fail: function fail() {},
         complete: function complete() {} });

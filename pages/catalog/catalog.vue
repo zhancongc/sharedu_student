@@ -16,18 +16,28 @@
 					<text class="text-grey">添加课程</text>
 				</view>
 			</view>
-			<view class="cu-item" :class="menuArrow?'arrow':''">
+			<view class="cu-item margin-top" :class="menuArrow?'arrow':''">
 				<view class="content" @click="toTutorAdd">
 					<image src="/static/logo.png" class="png" mode="aspectFit"></image>
 					<text class="text-grey">家教注册</text>
 				</view>
 			</view>
-            <view class="cu-item" :class="menuArrow?'arrow':''">
+            <view class="cu-item margin-top" :class="menuArrow?'arrow':''">
             	<view class="content" @click="toTutorWanted">
             		<image src="/static/logo.png" class="png" mode="aspectFit"></image>
             		<text class="text-grey">家教线索</text>
             	</view>
             </view>
+			<view class="cu-item" :class="menuArrow?'arrow':''">
+				<view class="content" @click="toTutors">
+					<image src="/static/logo.png" class="png" mode="aspectFit"></image>
+					<text class="text-grey">找家教</text>
+				</view>
+			</view>
+		</view>
+		<view class="padding-xl">
+		    <button class="cu-btn block line-orange lg" @click="toIndex">
+		        <text class="cuIcon-explore"></text> example</button>
 		</view>
 	</view>
 </template>
@@ -40,6 +50,14 @@
 			}
 		},
 		methods: {
+			toIndex(e) {
+				uni.navigateTo({
+					url: '/pages/index/index',
+					success: res => {},
+					fail: () => {},
+					complete: () => {}
+				});
+			},
 			toStoreCreate(){
 				uni.navigateTo({
 					url: '/pages/store_create/store_create',
@@ -71,7 +89,15 @@
             		fail: () => {},
             		complete: () => {}
             	});
-            }
+            },
+			toTutors(){
+				uni.navigateTo({
+					url: '/pages/tutors/tutors',
+					success: res => {},
+					fail: () => {},
+					complete: () => {}
+				});
+			}
 		}
 	}
 </script>
