@@ -6,7 +6,7 @@
 		<view class="cu-bar bg-white search fixed" :style="[{top:CustomBar + 'px'}]">
 			<view class="search-form round">
 				<text class="cuIcon-search"></text>
-				<input type="text" placeholder="搜索家教线索" confirm-type="search" @input="searchIcon"></input>
+				<input type="text" placeholder="搜索家教线索" confirm-type="search" @input="searchIcon" @confirm="search"></input>
 			</view>
 		</view>
 		<view class="grid col-2 padding-sm" style="margin-top: 42px;">
@@ -53,8 +53,10 @@
 					url: '../index/index'
 				})
 			},
-			searchIcon(e){
-			}
+			searchIcon(e){console.log(e.currentTarget);},
+			search(e){
+				console.log(e.currentTarget);
+			},
 		}
 	}
 </script>

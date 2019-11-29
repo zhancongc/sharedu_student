@@ -175,7 +175,9 @@ var _default =
         url: '../index/index' });
 
     },
-    searchIcon: function searchIcon(e) {
+    searchIcon: function searchIcon(e) {console.log(e.currentTarget);},
+    search: function search(e) {
+      console.log(e.currentTarget);
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
