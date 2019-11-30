@@ -46,7 +46,9 @@
 	export default {
 		data() {
 			return {
-				
+				menuBorder: false,
+				menuCard: true,
+				menuArrow: true,
 			}
 		},
 		methods: {
