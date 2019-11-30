@@ -34,6 +34,12 @@
 					<text class="text-grey">找家教</text>
 				</view>
 			</view>
+            <view class="cu-item" :class="menuArrow?'arrow':''">
+            	<view class="content" @click="toSearch">
+            		<image src="/static/logo.png" class="png" mode="aspectFit"></image>
+            		<text class="text-grey">search</text>
+            	</view>
+            </view>
 		</view>
 		<view class="padding-xl">
 		    <button class="cu-btn block line-orange lg" @click="toIndex">
@@ -99,7 +105,15 @@
 					fail: () => {},
 					complete: () => {}
 				});
-			}
+			},
+            toSearch(){
+                uni.navigateTo({
+                	url: '/pages/search/search',
+                	success: res => {},
+                	fail: () => {},
+                	complete: () => {}
+                });
+            },
 		}
 	}
 </script>
