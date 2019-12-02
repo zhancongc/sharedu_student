@@ -124,7 +124,6 @@
 					url: '/pages/index/index',
 				})
 			},
-		}
 	}
 </script>
 

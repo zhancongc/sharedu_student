@@ -107,6 +107,9 @@
         ,{
             "path" : "pages/store/store",
             "style" : {}
+        },{
+            "path" : "pages/search/search",
+            "style" : {}
         }
     ],
     "globalStyle": {
