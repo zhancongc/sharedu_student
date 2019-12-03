@@ -34,7 +34,8 @@
     "pages/tutors/tutors",
     "pages/lessons/lessons",
     "pages/store/store",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/me/me"
   ],
   "subPackages": [],
   "window": {

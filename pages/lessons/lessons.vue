@@ -1,8 +1,21 @@
 <template>
 	<view>
-		<cu-custom bgColor="bg-gradual-pink" :isBack="true">
-			<block slot="backText">返回</block><block slot="content">家教线索</block>
+		<cu-custom bgColor="bg-gradual-pink">
+			<block slot="content">课程</block>
 		</cu-custom>
+		<view class="box">
+			<view class="cu-bar tabbar bg-white foot shadow">
+				<view class="action" v-for="(item, index) in tabbar" :key="index" 
+					@click="switchTo($event, item.url)">
+					<view class="cuIcon-cu-image" :class="item.choosed?'text-green':'text-grey'">
+						<text class="lg" :class="'cuIcon-' + item.icon" ></text>
+						<!--image :src="item.icon"></image>
+						<!--view class="cu-tag badge">{{item.info_number}}</view-->
+					</view>
+					<view :class="item.choosed?'text-green':'text-grey'">{{item.title}}</view>
+				</view>
+			</view>
+		</view>
 		<view class="cu-bar bg-white search fixed" :style="[{top:CustomBar + 'px'}]">
 			<view class="search-form round">
 				<text class="cuIcon-search"></text>
@@ -24,6 +37,10 @@
 				</view>
 			</view>
 		</view>
+		<view class="text-grey" v-if="lessons.length > 3"
+			style="text-align: center;font-size: 24rpx; margin: 0; width: 100%; height: 140rpx;">
+			我是有底线的
+		</view>
 	</view>
 </template>
 
@@ -31,6 +48,27 @@
 	export default {
 		data() {
 			return {
+				tabbar: [{
+					title: '首页',
+					icon: 'home',
+					choosed: false,
+					url: '/pages/catalog/catalog'
+				},{
+					title: '课程',
+					icon: 'search',
+					choosed: true,
+					url: '/pages/lessons/lessons'
+				},{
+					title: '店铺',
+					icon: 'shop',
+					choosed: false,
+					url: '/pages/store/store'
+				},{
+					title: '我的',
+					icon: 'people',
+					choosed: false,
+					url: '/pages/me/me'
+				}],
 				CustomBar: this.CustomBar,
 				lessons: [
 					{
@@ -51,6 +89,15 @@
 						times: 3,
 						createDate: '2019-11-28 08:22:00'
 					},
+					{
+						tid: 't234',
+						title: '高三英语冲刺课',
+						image: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
+						city: '静安',
+						price: '599',
+						times: 3,
+						createDate: '2019-11-28 08:22:00'
+					},
 				],
 			}
 		},
@@ -64,7 +111,16 @@
 			uni.hideLoading()
 		},
 		methods: {
-			
+			jumpTo(e, url){
+				uni.navigateTo({
+					url: url
+				})
+			},
+			switchTo(e, url) {
+				uni.redirectTo({
+					url: url
+				})
+			},
 		}
 	}
 </script>

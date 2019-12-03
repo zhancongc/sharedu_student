@@ -68,7 +68,6 @@
 		},
 		onReady() {
 			uni.hideLoading()
-			}
 		},
 
 		methods: {
