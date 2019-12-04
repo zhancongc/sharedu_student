@@ -115,6 +115,14 @@
             "path" : "pages/me/me",
             "style" : {}
         }
+        ,{
+            "path" : "pages/bills/bills",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/lesson_detail/lesson_detail",
+            "style" : {}
+        }
     ],
     "globalStyle": {
         "mp-alipay": {

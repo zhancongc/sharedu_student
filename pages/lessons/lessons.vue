@@ -54,7 +54,7 @@
 					choosed: false,
 					url: '/pages/catalog/catalog'
 				},{
-					title: '课程',
+					title: '找课',
 					icon: 'search',
 					choosed: true,
 					url: '/pages/lessons/lessons'
@@ -121,6 +121,11 @@
 					url: url
 				})
 			},
+			toLessonDetail(e, tid){
+				uni.navigateTo({
+					url: '/pages/lesson_detail/lesson_detail?tid='+tid
+				})
+			}
 		}
 	}
 </script>

@@ -47,6 +47,18 @@
 				</view>
 			</view>
 			<view class="cu-item" :class="menuArrow?'arrow':''">
+				<view class="content" @click="jumpTo($event, toTutorAddUrl)">
+					<text class="cuIcon-form text-grey"></text>
+					<text class="text-grey">注册成为家教</text>
+				</view>
+			</view>
+			<view class="cu-item" :class="menuArrow?'arrow':''">
+				<button class="content" open-type="contact" style="text-align: left;">
+					<text class="cuIcon-service text-grey"></text>
+					<text class="text-grey">联系客服</text>
+				</button>
+			</view>
+			<view class="cu-item" :class="menuArrow?'arrow':''">
 				<view class="content" @click="jumpTo($event, toAboutUrl)">
 					<text class="cuIcon-info text-grey"></text>
 					<text class="text-grey">关于享淘课</text>
@@ -66,7 +78,7 @@
 					choosed: false,
 					url: '/pages/catalog/catalog'
 				},{
-					title: '课程',
+					title: '找课',
 					icon: 'search',
 					choosed: false,
 					url: '/pages/lessons/lessons'
@@ -84,6 +96,7 @@
 				avatarUrl : 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
 				nickname: '正义天使 凯尔',
 				toBillsUrl: '/pages/bills/bills',
+				toTutorAddUrl: '/pages/tutor_add/tutor_add',
 				toAboutUrl: '/pages/about/about'
 			}
 		},

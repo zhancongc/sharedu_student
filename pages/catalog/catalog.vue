@@ -16,6 +16,16 @@
 				</view>
 			</view>
 		</view>
+		<view class="cu-list grid" :class="['col-' + gridCol,gridBorder?'':'no-border']">
+			<view class="cu-item" v-for="(item,index) in cuIconList" :key="index" v-if="index<gridCol*2" @click="jumpTo($event, item.url)">
+				<view :class="['cuIcon-' + item.cuIcon,'text-' + item.color]">
+					<view class="cu-tag badge" v-if="item.badge!=0">
+						<block v-if="item.badge!=1">{{item.badge>99?'99+':item.badge}}</block>
+					</view>
+				</view>
+				<text :class="'text-'+item.color">{{item.name}}</text>
+			</view>
+		</view>
 		<view class="grid col-2 padding-sm">
 			<view class="padding-sm" v-for="(item, index) in catalog" :key="index">
 				<view class="bg-gradual-red padding radius text-center shadow-blur" 
@@ -27,38 +37,6 @@
 				</view>
 			</view>
 		</view>
-		<!--view class="cu-list menu" :class="[menuBorder?'sm-border':'',menuCard?'card-menu margin-top':'']">
-			<view class="cu-item" :class="menuArrow?'arrow':''">
-				<view class="content" @click="toStoreCreate">
-					<text class="cuIcon-circlefill text-grey"></text>
-					<text class="text-grey">门店注册</text>
-				</view>
-			</view>
-			<view class="cu-item" :class="menuArrow?'arrow':''">
-				<view class="content" @click="toLessonAdd">
-					<image src="/static/logo.png" class="png" mode="aspectFit"></image>
-					<text class="text-grey">添加课程</text>
-				</view>
-			</view>
-			<view class="cu-item margin-top" :class="menuArrow?'arrow':''">
-				<view class="content" @click="toTutorAdd">
-					<image src="/static/logo.png" class="png" mode="aspectFit"></image>
-					<text class="text-grey">家教注册</text>
-				</view>
-			</view>
-            <view class="cu-item margin-top" :class="menuArrow?'arrow':''">
-            	<view class="content" @click="toTutorWanted">
-            		<image src="/static/logo.png" class="png" mode="aspectFit"></image>
-            		<text class="text-grey">请家教</text>
-            	</view>
-            </view>
-			<view class="cu-item" :class="menuArrow?'arrow':''">
-				<view class="content" @click="toTutors">
-					<image src="/static/logo.png" class="png" mode="aspectFit"></image>
-					<text class="text-grey">找家教</text>
-				</view>
-			</view>
-		</view-->
 		<view class="padding-xl">
 		    <button class="cu-btn block line-orange lg" @click="toIndex">
 		        <text class="cuIcon-explore"></text> example</button>
@@ -112,7 +90,28 @@
 				},{
 					title: '看课程信息',
 					url: '/pages/lessons/lessons'
-				}]
+				}],
+				cuIconList: [{
+					cuIcon: 'formfill',
+					color: 'red',
+					badge: 0,
+					name: '课程',
+					url: '/pages/lessons/lessons'
+				}, {
+					cuIcon: 'friendfill',
+					color: 'orange',
+					badge: 0,
+					name: '家教',
+					url: '/pages/tutors/tutors'
+				}, {
+					cuIcon: 'newsfill',
+					color: 'yellow',
+					badge: 0,
+					name: '订单',
+					url: '/pages/bills/bills'
+				},],
+				gridCol: 3,
+				gridBorder: true,
 			}
 		},
 		methods: {
@@ -138,9 +137,6 @@
 <style>
 	.box {
 		margin: 20upx 0;
-		/*position: fixed;
-		left: 0;
-		bottom: 0;*/
 	}
 
 	.box view.cu-bar {

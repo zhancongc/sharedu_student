@@ -35,7 +35,9 @@
     "pages/lessons/lessons",
     "pages/store/store",
     "pages/search/search",
-    "pages/me/me"
+    "pages/me/me",
+    "pages/bills/bills",
+    "pages/lesson_detail/lesson_detail"
   ],
   "subPackages": [],
   "window": {

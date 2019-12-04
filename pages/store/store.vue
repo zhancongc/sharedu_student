@@ -38,7 +38,7 @@
 					choosed: false,
 					url: '/pages/catalog/catalog'
 				},{
-					title: '课程',
+					title: '找课',
 					icon: 'search',
 					choosed: false,
 					url: '/pages/lessons/lessons'
