@@ -1,8 +1,21 @@
 <template>
 	<view>
-		<cu-custom bgColor="bg-gradual-pink" :isBack="true">
-			<block slot="backText">返回</block><block slot="content">家教线索</block>
+		<cu-custom bgColor="bg-gradual-pink">
+			<block slot="content">找家教</block>
 		</cu-custom>
+		<view class="box">
+			<view class="cu-bar tabbar bg-white foot shadow">
+				<view class="action" v-for="(item, index) in tabbar" :key="index" 
+					@click="switchTo($event, item.url)">
+					<view class="cuIcon-cu-image" :class="item.choosed?'text-green':'text-grey'">
+						<text class="lg" :class="'cuIcon-' + item.icon" ></text>
+						<!--image :src="item.icon"></image>
+						<!--view class="cu-tag badge">{{item.info_number}}</view-->
+					</view>
+					<view :class="item.choosed?'text-green':'text-grey'">{{item.title}}</view>
+				</view>
+			</view>
+		</view>
 		<view class="cu-bar bg-white search fixed" :style="[{top:CustomBar + 'px'}]">
 			<view class="search-form round">
 				<text class="cuIcon-search"></text>
@@ -11,14 +24,19 @@
 		</view>
 		<view class="cu-card article" :class="isCard?'no-card':''" style="margin-top: 94upx;">
 			<view class="cu-item shadow" v-for="(item, index) in tutors" :key="index">
-				<view class="title" @click="toTutorDetail($event, item.tid)"><view class="text-cut">{{item.title}}</view></view>
+				<view class="title" @click="toTutorDetail($event, item.tid)">
+					<view class="text-cut">{{item.title}}</view>
+				</view>
 				<view class="content" @click="toTutorDetail($event, item.tid)">
-					<!--image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg"
-					 mode="aspectFill"></image-->
+					<image :src="item.photo" mode="aspectFill"></image>
 					<view class="desc">
-						<view class="text-content">时薪{{item.salary}}元</view>
-						<view>
-							<view class="cu-tag bg-red light sm round">{{item.city}}</view>
+						<view class="text-title">
+							<view class="cu-tag bg-blue light round sm">{{item.degree}}</view>
+							<view class="cu-tag bg-orange light round sm">{{item.city}}</view>
+							<button class="cu-btn radius sm bg-green" style="float: right;">预约</button>
+						</view>
+						<view class="text-content margin-top">
+							{{item.subject}}
 						</view>
 					</view>
 				</view>
@@ -41,20 +59,45 @@
 	export default {
 		data() {
 			return {
+				tabbar: [{
+					title: '首页',
+					icon: 'home',
+					choosed: false,
+					url: '/pages/catalog/catalog'
+				},{
+					title: '找课',
+					icon: 'search',
+					choosed: false,
+					url: '/pages/lessons/lessons'
+				},{
+					title: '家教',
+					icon: 'friend',
+					choosed: true,
+					url: '/pages/tutors/tutors'
+				},{
+					title: '我的',
+					icon: 'people',
+					choosed: false,
+					url: '/pages/me/me'
+				}],
 				CustomBar: this.CustomBar,
 				tutors: [
 					{
 						tid: 't123',
-						title: '求高二英语老师',
+						title: '王老师',
+						photo: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
+						degree: '本科',
 						city: '黄埔',
-						salary: '120',
+						subject: '高中数学，高中化学，高中物理',
 						createDate: '2019-11-27 09:22:00'
 					},
 					{
 						tid: 't234',
-						title: '求高三数学老师',
+						title: '刘老师',
+						degree: '硕士',
+						photo: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
 						city: '浦东',
-						salary: '100',
+						subject: '初中英语，高中英语',
 						createDate: '2019-11-28 08:22:00'
 					},
 				],
@@ -71,6 +114,16 @@
 		},
 
 		methods: {
+			jumpTo(e, url){
+				uni.navigateTo({
+					url: url
+				})
+			},
+			switchTo(e, url) {
+				uni.redirectTo({
+					url: url
+				})
+			},
 			toTutorDetail(e, tid) {
 				console.log(e);
 				console.log("tid", tid);
@@ -87,5 +140,11 @@
 </script>
 
 <style>
+	.box {
+		margin: 20upx 0;
+	}
 
+	.box view.cu-bar {
+		margin-top: 20upx;
+	}
 </style>

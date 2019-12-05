@@ -24,14 +24,22 @@
 		</view>
 		<view class="cu-card article" :class="isCard?'no-card':''" style="margin-top: 94rpx;">
 			<view class="cu-item shadow" v-for="(item, index) in lessons" :key="index">
-				<view class="title" @click="toLessonDetail($event, item.tid)"><view class="text-cut">{{item.title}}</view></view>
+				<view class="title" @click="toLessonDetail($event, item.tid)">
+					<view class="text-cut">{{item.title}}</view>
+				</view>
 				<view class="content" @click="toLessonDetail($event, item.tid)">
 					<image :src="item.image" mode="aspectFill"></image>
 					<view class="desc">
-						<view class="avatar-text">价格{{item.price}}元</view>
-						<view class="avatar-text">课时{{item.times}}</view>
-						<view>
-							<view class="cu-tag bg-red light sm round">{{item.city}}</view>
+						<view class="text-title">
+							<view class="cu-tag bg-orange light sm round">{{item.city}}</view>
+							<button class="cu-btn radius sm bg-green" style="float: right;">预约</button>
+						</view>
+						<view class="text-content">
+							<view class="avatar-text">
+								<text class="text-price" style="color: red">
+									{{item.price}}</text>
+							</view>
+							<view class="avatar-text">课时数{{item.times}}</view>
 						</view>
 					</view>
 				</view>
@@ -59,10 +67,10 @@
 					choosed: true,
 					url: '/pages/lessons/lessons'
 				},{
-					title: '店铺',
-					icon: 'shop',
+					title: '家教',
+					icon: 'friend',
 					choosed: false,
-					url: '/pages/store/store'
+					url: '/pages/tutors/tutors'
 				},{
 					title: '我的',
 					icon: 'people',

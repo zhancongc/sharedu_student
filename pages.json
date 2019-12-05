@@ -137,7 +137,7 @@
     },
     "usingComponts": true,
         "condition": { //模式配置，仅开发期间生效
-        "current": 0, //当前激活的模式(list 的索引项)
+        "current": 3, //当前激活的模式(list 的索引项)
         "list": [
 			{
 			    "name": "create store", //模式名称
@@ -152,6 +152,21 @@
 			{
 				"name": "tutor add", 
 				"path": "pages/tutor_add/tutor_add",
+				"query": ""
+			},
+			{
+				"name": "tutors", 
+				"path": "pages/tutors/tutors",
+				"query": ""
+			},
+			{
+				"name": "lessons", 
+				"path": "pages/lessons/lessons",
+				"query": ""
+			},
+			{
+				"name": "lesson detail", 
+				"path": "pages/lesson_detail/lesson_detail",
 				"query": ""
 			}
         ]

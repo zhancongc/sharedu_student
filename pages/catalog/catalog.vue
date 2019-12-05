@@ -59,10 +59,10 @@
 					choosed: false,
 					url: '/pages/lessons/lessons'
 				},{
-					title: '店铺',
-					icon: 'shop',
+					title: '家教',
+					icon: 'friend',
 					choosed: false,
-					url: '/pages/store/store'
+					url: '/pages/tutors/tutors'
 				},{
 					title: '我的',
 					icon: 'people',
@@ -73,23 +73,11 @@
 				menuCard: true,
 				menuArrow: true,
 				catalog: [{
-					title: '门店注册',
-					url: '/pages/store_create/store_create',
-				},{
 					title: '添加课程',
 					url: '/pages/lesson_add/lesson_add',
 				},{
-					title: '家教注册',
-					url: '/pages/tutor_add/tutor_add',
-				},{
 					title: '请家教',
 					url: '/pages/tutor_wanted/tutor_wanted',
-				},{
-					title: '看家教信息',
-					url: '/pages/tutors/tutors',
-				},{
-					title: '看课程信息',
-					url: '/pages/lessons/lessons'
 				}],
 				cuIconList: [{
 					cuIcon: 'formfill',

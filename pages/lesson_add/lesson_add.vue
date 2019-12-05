@@ -26,13 +26,17 @@
         	<input placeholder="请输入课程价格"  type="digit" maxlength="10" 
         		focus="false" @input="setLessonPrice"></input>
         </view>
-		<view class="cu-form-group align-start">
-		    <view class="title">课程介绍</view>
+		<view class="cu-bar bg-white solid-bottom margin-top">
+			<view class="action">
+				<text class="text-black">课程介绍</text>
+			</view>
+		</view>
+		<view class="cu-form-group">
 		    <textarea maxlength="140" :disabled="modalName!=null" @input="setLessonIntro" placeholder="请输入课程介绍"></textarea>
 		</view>
 		<view class="cu-bar bg-white margin-top">
 		    <view class="action">
-		        上传课程图片
+				<text class="text-black">上传课程图片</text>
 		    </view>
 		    <view class="action">
 		        {{lessonImage.length}}/4

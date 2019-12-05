@@ -1,21 +1,8 @@
 <template>
 	<view>
-		<cu-custom bgColor="bg-gradual-pink">
-			<block slot="content">店铺</block>
+		<cu-custom bgColor="bg-gradual-pink" :isBack="true">
+			<block slot="backText">返回</block><block slot="content">店铺</block>
 		</cu-custom>
-		<view class="box">
-			<view class="cu-bar tabbar bg-white foot shadow">
-				<view class="action" v-for="(item, index) in tabbar" :key="index" 
-					@click="switchTo($event, item.url)">
-					<view class="cuIcon-cu-image" :class="item.choosed?'text-green':'text-grey'">
-						<text class="lg" :class="'cuIcon-' + item.icon" ></text>
-						<!--image :src="item.icon"></image>
-						<!--view class="cu-tag badge">{{item.info_number}}</view-->
-					</view>
-					<view :class="item.choosed?'text-green':'text-grey'">{{item.title}}</view>
-				</view>
-			</view>
-		</view>
         <view class="padding-xl" style="margin-top: 400rpx; margin-bottom: 400rpx;">
             <!--button class="cu-btn block line-orange lg">
                 <text class="cuIcon-upload"></text> 图标</button>
@@ -32,27 +19,6 @@
 	export default {
 		data() {
 			return {
-				tabbar: [{
-					title: '首页',
-					icon: 'home',
-					choosed: false,
-					url: '/pages/catalog/catalog'
-				},{
-					title: '找课',
-					icon: 'search',
-					choosed: false,
-					url: '/pages/lessons/lessons'
-				},{
-					title: '店铺',
-					icon: 'shop',
-					choosed: true,
-					url: '/pages/store/store'
-				},{
-					title: '我的',
-					icon: 'people',
-					choosed: false,
-					url: '/pages/me/me'
-				}],
 			}
 		},
 		onLoad() {

@@ -1,55 +1,71 @@
 {
-	"description": "项目配置文件。",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": false,
-		"es6": true,
-		"postcss": true,
-		"minified": true
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.9.2",
-	"appid": "wxd4fcc10a3bfe4d99",
-	"projectname": "sharedu",
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": 0,
-			"list": [
-				{
-					"name": "create store",
-					"query": "",
-					"id": 0,
-					"pathName": "pages/store_create/store_create"
-				},
-				{
-					"name": "add lesson",
-					"query": "",
-					"id": 1,
-					"pathName": "pages/lesson_add/lesson_add"
-				},
-				{
-					"name": "tutor add",
-					"query": "",
-					"id": 2,
-					"pathName": "pages/tutor_add/tutor_add"
-				}
-			]
-		}
-	}
+  "description": "项目配置文件。",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "postcss": true,
+    "minified": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.9.2",
+  "appid": "wxd4fcc10a3bfe4d99",
+  "projectname": "sharedu",
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
+    "game": {
+      "current": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "current": 3,
+      "list": [
+        {
+          "name": "create store",
+          "query": "",
+          "id": 0,
+          "pathName": "pages/store_create/store_create"
+        },
+        {
+          "name": "add lesson",
+          "query": "",
+          "id": 1,
+          "pathName": "pages/lesson_add/lesson_add"
+        },
+        {
+          "name": "tutor add",
+          "query": "",
+          "id": 2,
+          "pathName": "pages/tutor_add/tutor_add"
+        },
+        {
+          "name": "tutors",
+          "query": "",
+          "id": 3,
+          "pathName": "pages/tutors/tutors"
+        },
+        {
+          "name": "lessons",
+          "query": "",
+          "id": 4,
+          "pathName": "pages/lessons/lessons"
+        },
+        {
+          "name": "lesson detail",
+          "query": "",
+          "id": 5,
+          "pathName": "pages/lesson_detail/lesson_detail"
+        }
+      ]
+    }
+  }
 }

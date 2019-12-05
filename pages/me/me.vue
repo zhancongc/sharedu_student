@@ -25,7 +25,7 @@
 							<image :src="avatar" class="round" style="width: 100%; height: 100%;"></image>
 						</view-->
 						<view class="content flex-sub">
-							<view class="text-grey">{{nickname}}</view>
+							<view class="text-black">{{nickname}}</view>
 							<!--view class="text-gray text-sm flex justify-between">
 								十天前
 								<view class="text-gray text-sm">
@@ -39,29 +39,37 @@
 				</view>
 			</view>
 		</view>
-		<view class="cu-list menu card-menu margin-top" :class="[menuBorder?'sm-border':'',menuCard?'card-menu margin-top':'']">
+		<view class="cu-list menu card-menu sm-border">
 			<view class="cu-item" :class="menuArrow?'arrow':''">
-				<view class="content" @click="jumpTo($event, toBillsUrl)">
-					<text class="cuIcon-text text-grey"></text>
-					<text class="text-grey">我的订单</text>
+				<view class="content" @click="jumpTo($event, toTutorAddUrl)">
+					<text class="cuIcon-friendadd text-black"></text>
+					<text class="text-black">注册成为家教</text>
 				</view>
 			</view>
 			<view class="cu-item" :class="menuArrow?'arrow':''">
-				<view class="content" @click="jumpTo($event, toTutorAddUrl)">
-					<text class="cuIcon-form text-grey"></text>
-					<text class="text-grey">注册成为家教</text>
+				<view class="content" @click="jumpTo($event, toStoreUrl)">
+					<text class="cuIcon-shop text-black"></text>
+					<text class="text-black">我的店铺</text>
+				</view>
+			</view>
+		</view>
+		<view class="cu-list menu card-menu margin-top sm-border">
+			<view class="cu-item" :class="menuArrow?'arrow':''">
+				<view class="content" @click="jumpTo($event, toBillsUrl)">
+					<text class="cuIcon-text text-black"></text>
+					<text class="text-black">我的订单</text>
 				</view>
 			</view>
 			<view class="cu-item" :class="menuArrow?'arrow':''">
 				<button class="content" open-type="contact" style="text-align: left;">
-					<text class="cuIcon-service text-grey"></text>
-					<text class="text-grey">联系客服</text>
+					<text class="cuIcon-service text-black"></text>
+					<text class="text-black">联系客服</text>
 				</button>
 			</view>
 			<view class="cu-item" :class="menuArrow?'arrow':''">
 				<view class="content" @click="jumpTo($event, toAboutUrl)">
-					<text class="cuIcon-info text-grey"></text>
-					<text class="text-grey">关于享淘课</text>
+					<text class="cuIcon-info text-black"></text>
+					<text class="text-black">关于享淘课</text>
 				</view>
 			</view>
 		</view>
@@ -83,10 +91,10 @@
 					choosed: false,
 					url: '/pages/lessons/lessons'
 				},{
-					title: '店铺',
-					icon: 'shop',
+					title: '家教',
+					icon: 'friend',
 					choosed: false,
-					url: '/pages/store/store'
+					url: '/pages/tutors/tutors'
 				},{
 					title: '我的',
 					icon: 'people',
@@ -96,7 +104,9 @@
 				avatarUrl : 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
 				nickname: '正义天使 凯尔',
 				toBillsUrl: '/pages/bills/bills',
+				//toTutorWantedUrl: '/pages/tutor_wanted/tutor_wanted',
 				toTutorAddUrl: '/pages/tutor_add/tutor_add',
+				toStoreUrl: '/pages/store/store',
 				toAboutUrl: '/pages/about/about'
 			}
 		},

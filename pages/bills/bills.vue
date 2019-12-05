@@ -13,12 +13,18 @@
 			<view class="cu-item shadow" v-for="(item, index) in tutors" :key="index">
 				<view class="title" @click="toBillDetail($event, item.tid)"><view class="text-cut">{{item.title}}</view></view>
 				<view class="content" @click="toBillDetail($event, item.tid)">
-					<!--image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg"
-					 mode="aspectFill"></image-->
+					<image :src="item.image"
+					 mode="aspectFill"></image>
 					<view class="desc">
-						<view class="text-content">时薪{{item.salary}}元</view>
-						<view>
-							<view class="cu-tag bg-red light sm round">{{item.city}}</view>
+						<view class="text-title">
+							<view class="cu-tag bg-orange light sm round">{{item.city}}</view>
+						</view>
+						<view class="text-content">
+							<view class="avatar-text">
+								<text class="text-price" style="color: red">
+								{{item.price}}</text>
+							</view>
+							<view class="avatar-text">课时数{{item.times}}</view>
 						</view>
 					</view>
 				</view>
@@ -35,16 +41,20 @@
 				tutors: [
 					{
 						tid: 't123',
-						title: '求高二英语老师',
+						title: '高三数学冲刺课',
+						image: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
 						city: '黄埔',
-						salary: '120',
+						price: '999',
+						times: 5,
 						createDate: '2019-11-27 09:22:00'
 					},
 					{
 						tid: 't234',
-						title: '求高三数学老师',
+						title: '高三化学冲刺课',
+						image: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
 						city: '浦东',
-						salary: '100',
+						price: '499',
+						times: 3,
 						createDate: '2019-11-28 08:22:00'
 					},
 				],

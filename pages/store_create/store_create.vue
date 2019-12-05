@@ -1,7 +1,7 @@
 <template>
     <view>
         <cu-custom bgColor="bg-gradual-pink" :isBack="true">
-            <block slot="backText">返回</block><block slot="content">店铺入驻</block>
+            <block slot="backText">返回</block><block slot="content">创建店铺</block>
         </cu-custom>
         <view class="cu-form-group margin-top">
             <view class="title">邀请码</view>
@@ -31,7 +31,7 @@
         </view>
         <view class="cu-bar bg-white margin-top">
             <view class="action">
-                上传营业执照图片
+                <text class="text-black">上传营业执照图片</text>
             </view>
             <view class="action">
                 {{licenseImageList.length}}/4
@@ -52,7 +52,7 @@
         </view>
         <view class="cu-bar bg-white margin-top">
             <view class="action">
-                上传商户经营场所图片
+				<text class="text-black">上传商户经营场所图片</text>
             </view>
             <view class="action">
                 {{storeImageList.length}}/4
