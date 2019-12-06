@@ -110,18 +110,23 @@
             setManager(e) {this.manger = e.detail.value},
             setManagerPhone(e) {this.managerPhone = e.detail.value},
             ChooseImage(e) {
-                    uni.chooseImage({
-                            count: 4, //默认9
-                            sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-                            sourceType: ['album'], //从相册选择
-                            success: (res) => {
-                                    if (this.storeImageList.length != 0) {
-                                            this.storeImageList = this.storeImageList.concat(res.tempFilePaths)
-                                    } else {
-                                            this.storeImageList = res.tempFilePaths
-                                    }
-                            }
-                    });
+                var num = 4 - this.data.goodsImageList.length
+                if (num < 1) {
+                  wx.showToast({title: '图片不能超过4张',})
+                  return ;
+                }
+                uni.chooseImage({
+                        count: num, //默认9
+                        sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+                        sourceType: ['album'], //从相册选择
+                        success: (res) => {
+                                if (this.storeImageList.length != 0) {
+                                        this.storeImageList = this.storeImageList.concat(res.tempFilePaths)
+                                } else {
+                                        this.storeImageList = res.tempFilePaths
+                                }
+                        }
+                });
             },
             ViewImage(e) {
                     uni.previewImage({
