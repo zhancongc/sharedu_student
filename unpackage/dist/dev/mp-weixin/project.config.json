@@ -64,6 +64,12 @@
           "query": "",
           "id": 5,
           "pathName": "pages/lesson_detail/lesson_detail"
+        },
+        {
+          "name": "bill detail",
+          "query": "",
+          "id": 6,
+          "pathName": "pages/bill_detail/bill_detail"
         }
       ]
     }

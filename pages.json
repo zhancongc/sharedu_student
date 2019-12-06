@@ -123,6 +123,10 @@
             "path" : "pages/lesson_detail/lesson_detail",
             "style" : {}
         }
+        ,{
+            "path" : "pages/bill_detail/bill_detail",
+            "style" : {}
+        }
     ],
     "globalStyle": {
         "mp-alipay": {
@@ -167,6 +171,11 @@
 			{
 				"name": "lesson detail", 
 				"path": "pages/lesson_detail/lesson_detail",
+				"query": ""
+			},
+			{
+				"name": "bill detail", 
+				"path": "pages/bill_detail/bill_detail",
 				"query": ""
 			}
         ]

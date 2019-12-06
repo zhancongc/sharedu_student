@@ -37,7 +37,8 @@
     "pages/search/search",
     "pages/me/me",
     "pages/bills/bills",
-    "pages/lesson_detail/lesson_detail"
+    "pages/lesson_detail/lesson_detail",
+    "pages/bill_detail/bill_detail"
   ],
   "subPackages": [],
   "window": {
@@ -52,6 +53,5 @@
     "components": "/pages/component/home",
     "plugin": "/pages/plugin/home",
     "cu-custom": "/colorui/components/cu-custom"
-  },
-  "sitemapLocation": "sitemap96.json"
+  }
 }

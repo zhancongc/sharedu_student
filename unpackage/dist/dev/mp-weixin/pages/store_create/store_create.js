@@ -234,8 +234,13 @@ var _default =
     setManager: function setManager(e) {this.manger = e.detail.value;},
     setManagerPhone: function setManagerPhone(e) {this.managerPhone = e.detail.value;},
     ChooseImage: function ChooseImage(e) {var _this = this;
+      var num = 4 - this.data.goodsImageList.length;
+      if (num < 1) {
+        wx.showToast({ title: '图片不能超过4张' });
+        return;
+      }
       uni.chooseImage({
-        count: 4, //默认9
+        count: num, //默认9
         sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
         sourceType: ['album'], //从相册选择
         success: function success(res) {

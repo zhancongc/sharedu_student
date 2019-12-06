@@ -160,7 +160,7 @@ var _default =
   data: function data() {
     return {
       CustomBar: this.CustomBar,
-      tutors: [
+      bills: [
       {
         tid: 't123',
         title: '高三数学冲刺课',
