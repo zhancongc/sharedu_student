@@ -38,7 +38,8 @@
     "pages/me/me",
     "pages/bills/bills",
     "pages/lesson_detail/lesson_detail",
-    "pages/bill_detail/bill_detail"
+    "pages/bill_detail/bill_detail",
+    "pages/store_detail/store_detail"
   ],
   "subPackages": [],
   "window": {

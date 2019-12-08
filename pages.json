@@ -127,6 +127,10 @@
             "path" : "pages/bill_detail/bill_detail",
             "style" : {}
         }
+        ,{
+            "path" : "pages/store_detail/store_detail",
+            "style" : {}
+        }
     ],
     "globalStyle": {
         "mp-alipay": {
@@ -177,7 +181,12 @@
 				"name": "bill detail", 
 				"path": "pages/bill_detail/bill_detail",
 				"query": ""
-			}
+			},
+            {
+            	"name": "store", 
+            	"path": "pages/store/store",
+            	"query": ""
+            }
         ]
     }
 

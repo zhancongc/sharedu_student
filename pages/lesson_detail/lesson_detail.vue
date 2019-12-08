@@ -1,3 +1,4 @@
+<!--info>消费者看到的课程详情页<info-->
 <template>
 	<view>
 		<view class="fixed">
@@ -29,6 +30,20 @@
 				<text class="text-grey">销量 {{salesNumber}}</text>
 			</view>
 		</view>
+        <view class="cu-list menu-avatar margin-top">
+            <view class="cu-item" @click="toStoreDetail($event, storeId)">
+                <view class="cu-avatar round lg" :style="'background-image:url('+ storeIcon +');'"></view>
+                <view class="content flex-sub">
+                    <view class="text-bold text-black">{{storeName}}</view>
+                    <view class="text-gray text-sm flex justify-between">
+                        <!--text>十天前</text-->
+                        <view class="text-gray text-sm text-right">
+                            <text class="cuIcon-goods margin-lr-xs"></text>{{goodsNum}}课程
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
 		<scroll-view scroll-x class="bg-white nav text-center margin-top">
 			<view class="cu-item" :class="index==TabCur?'text-orange cur':''" v-for="(item,index) in lessonNav" :key="index" @tap="tabSelect" :data-id="index">
 				{{item}}
@@ -46,7 +61,7 @@
 				{{lessonIntro}}</view>
 			</view>
 		</view>
-		<view style="height: 120upx;"></view>
+		<view style="height: 130upx;"></view>
 		<view class="cu-bar bg-white tabbar border shop foot">
 			<view class="action" open-type="contact">
 				<view class="cuIcon-service text-green">
@@ -64,7 +79,7 @@
 				</view>
 				购物车
 			</view-->
-			<view class="bg-red submit">立即预约</view>
+			<view class="bg-red submit" @click="bookLesson">立即预约</view>
 		</view>
 	</view>
 </template>
@@ -109,7 +124,13 @@
 				TabCur: 0,
 				scrollLeft: 0,
 				lessonNav: ['简介', '评价'],
-				// favor
+                // 店铺
+                storeId: "a123",
+                storeIcon: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
+                storeName: '英雄联盟学院',
+                goodsNum: 20,
+                storePhone: "114",
+				// 收藏
 				isFavor: false,
 				// form
 				lessonName: '英雄联盟新手训练课程',
@@ -129,7 +150,24 @@
 			},
 			favorite(e){
 				this.isFavor = !this.isFavor
-			}
+			},
+            toStoreDetail(e, store_id){
+                console.log(e)
+            	uni.navigateTo({
+            		url: '/pages/store_detail/store_detail?store_id='+store_id
+            	})
+            },
+            bookLesson(){
+                console.log(this.storePhone)
+                let that = this
+                wx.makePhoneCall({
+                  phoneNumber: that.storePhone ,//仅为示例，并非真实的电话号码
+                  success() {
+                      console.log("success")
+                  },
+                  fail(){console.log("fail")}
+                })
+            }
 		}
 	}
 </script>

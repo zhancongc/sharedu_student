@@ -70,6 +70,12 @@
           "query": "",
           "id": 6,
           "pathName": "pages/bill_detail/bill_detail"
+        },
+        {
+          "name": "store",
+          "query": "",
+          "id": 7,
+          "pathName": "pages/store/store"
         }
       ]
     }

@@ -1,3 +1,4 @@
+<!--info>消费者看到的课程列表页<info-->
 <template>
 	<view>
 		<cu-custom bgColor="bg-gradual-pink">
@@ -10,7 +11,7 @@
 					<view class="cuIcon-cu-image" :class="item.choosed?'text-green':'text-grey'">
 						<text class="lg" :class="'cuIcon-' + item.icon" ></text>
 						<!--image :src="item.icon"></image>
-						<!--view class="cu-tag badge">{{item.info_number}}</view-->
+						<view class="cu-tag badge">{{item.info_number}}</view-->
 					</view>
 					<view :class="item.choosed?'text-green':'text-grey'">{{item.title}}</view>
 				</view>
@@ -22,7 +23,7 @@
 				<input type="text" placeholder="搜索培训课程" confirm-type="search" @input="searchIcon" @confirm="search"></input>
 			</view>
 		</view>
-		<view class="cu-card article" :class="isCard?'no-card':''" style="margin-top: 94rpx;">
+		<view class="cu-card article" style="margin-top: 94rpx;">
 			<view class="cu-item shadow" v-for="(item, index) in lessons" :key="index">
 				<view class="title" @click="toLessonDetail($event, item.tid)">
 					<view class="text-cut">{{item.title}}</view>

@@ -7580,9 +7580,9 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 227:
-/*!****************************************************************************************!*\
-  !*** D:/Workspace/sharedu_student/node_modules/wxvalidator/dist/js/wxValidator.min.js ***!
-  \****************************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** /Users/congczhan/GitHub/sharedu_student/node_modules/wxvalidator/dist/js/wxValidator.min.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7591,7 +7591,7 @@ internalMixin(Vue);
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : undefined;}("undefined" != typeof global ? global : "undefined" != typeof window ? window : void 0, function () {var e = function e(_e, t, r) {this.rules = function (e) {for (var t in e) {e[t] = e[t].split("|");}return e;}(t), this.src = _e, this.messages = r, this.collectedErrors = Object.create(null);};function d(e, t) {var r = e[t];e.splice(t, 1), console.warn('Rule name: "' + r + "\", please don't add the rule of unregistered for data that it be verify");}return e.prototype.ruleMethods = { required: function required(e) {return !/^\s*$/.test(e);}, phone: function phone(e) {return /^1[34578]\d{9}$/.test(e);}, date: function date(e) {return /^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/.test(e);}, email: function email(e) {return /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/.test(e);} }, e.prototype.getValue = function (e) {return this.src[e];}, e.prototype.validate = function () {var e,t,r,n,o,i,u,s,l,c = !0;for (var a in this.src) {if (e = this.rules[a], null == (t = this.getValue(a))) return;if (void (o = 0) !== e) for (; r = e[o++];) {(n = this.getCheckFunc(r)) ? !1 === n(t) && (c = !1, void 0, s = r + "." + (u = a), l = (i = this).messages[s], (i.collectedErrors[u] || (i.collectedErrors[u] = [])).push(l || "默认错误")) : d(e, o);}}return c;}, e.prototype.getCheckFunc = function (e) {return this.ruleMethods[e];}, e.prototype.getError = function (e) {return this.collectedErrors[e] || null;}, e.register = function (e, t) {if ("function" != typeof t) throw new Error("The handler must be a function");this.prototype.ruleMethods[e] = t;}, e.singleValid = function (e, t, r) {try {var n = this.prototype.getCheckFunc(t)(e);} catch (e) {throw new Error("WxValidator.singleValid can not call the rule of undefined");}return { result: n, msg: !1 === n && r || "正确" };}, e;});
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../Program Files/HBuilderX/plugins/uniapp-cli/node_modules/webpack/buildin/global.js */ 3)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../../Applications/HBuilderX.app/Contents/HBuilderX/plugins/uniapp-cli/node_modules/webpack/buildin/global.js */ 3)))
 
 /***/ }),
 
@@ -7627,9 +7627,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 4:
-/*!***********************************************!*\
-  !*** D:/Workspace/sharedu_student/pages.json ***!
-  \***********************************************/
+/*!**********************************************************!*\
+  !*** /Users/congczhan/GitHub/sharedu_student/pages.json ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8537,21 +8537,21 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ }),
 
 /***/ 7:
-/*!****************************************************************!*\
-  !*** D:/Workspace/sharedu_student/pages.json?{"type":"style"} ***!
-  \****************************************************************/
+/*!***************************************************************************!*\
+  !*** /Users/congczhan/GitHub/sharedu_student/pages.json?{"type":"style"} ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/catalog/catalog": { "usingComponents": {} }, "pages/index/index": { "usingComponents": {} }, "pages/basics/layout": { "usingComponents": {} }, "pages/basics/background": { "usingComponents": {} }, "pages/basics/text": { "usingComponents": {} }, "pages/basics/icon": { "usingComponents": {} }, "pages/basics/button": { "usingComponents": {} }, "pages/basics/design": { "usingComponents": {} }, "pages/basics/tag": { "usingComponents": {} }, "pages/basics/avatar": { "usingComponents": {} }, "pages/basics/progress": { "usingComponents": {} }, "pages/basics/shadow": { "usingComponents": {} }, "pages/basics/loading": { "usingComponents": {} }, "pages/component/bar": { "usingComponents": {} }, "pages/component/nav": { "usingComponents": {} }, "pages/component/list": { "usingComponents": {} }, "pages/component/card": { "usingComponents": {} }, "pages/component/form": { "usingComponents": {} }, "pages/component/timeline": { "usingComponents": {} }, "pages/component/chat": { "usingComponents": {} }, "pages/component/swiper": { "usingComponents": {} }, "pages/component/modal": { "usingComponents": {} }, "pages/component/steps": { "usingComponents": {} }, "pages/plugin/indexes": { "usingComponents": {} }, "pages/plugin/animation": { "usingComponents": {} }, "pages/plugin/drawer": { "usingComponents": {} }, "pages/plugin/verticalnav": { "usingComponents": {} }, "pages/store_create/store_create": { "usingComponents": {} }, "pages/lesson_add/lesson_add": { "usingComponents": {} }, "pages/tutor_add/tutor_add": { "usingComponents": {} }, "pages/tutor_wanted/tutor_wanted": { "usingComponents": {} }, "pages/tutors/tutors": { "usingComponents": {} }, "pages/lessons/lessons": { "usingComponents": {} }, "pages/store/store": { "usingComponents": {} }, "pages/search/search": { "usingComponents": {} }, "pages/me/me": { "usingComponents": {} }, "pages/bills/bills": { "usingComponents": {} }, "pages/lesson_detail/lesson_detail": { "usingComponents": {} }, "pages/bill_detail/bill_detail": { "usingComponents": {} } }, "globalStyle": { "navigationBarBackgroundColor": "#9c26b0", "navigationBarTitleText": "享淘课", "navigationStyle": "custom", "navigationBarTextStyle": "white" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/catalog/catalog": { "usingComponents": {} }, "pages/index/index": { "usingComponents": {} }, "pages/basics/layout": { "usingComponents": {} }, "pages/basics/background": { "usingComponents": {} }, "pages/basics/text": { "usingComponents": {} }, "pages/basics/icon": { "usingComponents": {} }, "pages/basics/button": { "usingComponents": {} }, "pages/basics/design": { "usingComponents": {} }, "pages/basics/tag": { "usingComponents": {} }, "pages/basics/avatar": { "usingComponents": {} }, "pages/basics/progress": { "usingComponents": {} }, "pages/basics/shadow": { "usingComponents": {} }, "pages/basics/loading": { "usingComponents": {} }, "pages/component/bar": { "usingComponents": {} }, "pages/component/nav": { "usingComponents": {} }, "pages/component/list": { "usingComponents": {} }, "pages/component/card": { "usingComponents": {} }, "pages/component/form": { "usingComponents": {} }, "pages/component/timeline": { "usingComponents": {} }, "pages/component/chat": { "usingComponents": {} }, "pages/component/swiper": { "usingComponents": {} }, "pages/component/modal": { "usingComponents": {} }, "pages/component/steps": { "usingComponents": {} }, "pages/plugin/indexes": { "usingComponents": {} }, "pages/plugin/animation": { "usingComponents": {} }, "pages/plugin/drawer": { "usingComponents": {} }, "pages/plugin/verticalnav": { "usingComponents": {} }, "pages/store_create/store_create": { "usingComponents": {} }, "pages/lesson_add/lesson_add": { "usingComponents": {} }, "pages/tutor_add/tutor_add": { "usingComponents": {} }, "pages/tutor_wanted/tutor_wanted": { "usingComponents": {} }, "pages/tutors/tutors": { "usingComponents": {} }, "pages/lessons/lessons": { "usingComponents": {} }, "pages/store/store": { "usingComponents": {} }, "pages/search/search": { "usingComponents": {} }, "pages/me/me": { "usingComponents": {} }, "pages/bills/bills": { "usingComponents": {} }, "pages/lesson_detail/lesson_detail": { "usingComponents": {} }, "pages/bill_detail/bill_detail": { "usingComponents": {} }, "pages/store_detail/store_detail": {} }, "globalStyle": { "navigationBarBackgroundColor": "#9c26b0", "navigationBarTitleText": "享淘课", "navigationStyle": "custom", "navigationBarTextStyle": "white" } };exports.default = _default;
 
 /***/ }),
 
 /***/ 8:
-/*!***************************************************************!*\
-  !*** D:/Workspace/sharedu_student/pages.json?{"type":"stat"} ***!
-  \***************************************************************/
+/*!**************************************************************************!*\
+  !*** /Users/congczhan/GitHub/sharedu_student/pages.json?{"type":"stat"} ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
