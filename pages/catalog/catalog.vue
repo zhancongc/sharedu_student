@@ -48,12 +48,13 @@
 	export default {
 		data() {
 			return {
-				tabbar: [{
+				tabbar: [
+				/*{
 					title: '首页',
 					icon: 'home',
 					choosed: true,
 					url: '/pages/catalog/catalog'
-				},{
+				},*/{
 					title: '找课',
 					icon: 'search',
 					choosed: false,

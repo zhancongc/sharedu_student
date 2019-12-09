@@ -27,14 +27,14 @@
                     style="font-size: 28upx; line-height: 52upx; margin: 40upx 40upx;">{{storeIntro}}</view>
             </view>
         </view>
-        <view class="cu-bar bg-white margin-top">
+        <view class="cu-bar bg-white margin-top" style="border-bottom: #dfdfdf solid 1upx;">
             <view class="action">
                 <text class="cuIcon-title"></text>
                 <text class="text-xl text-bold">精品课程</text>
             </view>
         </view>
         <view class="cu-card article no-card">
-            <view class="cu-item shadow" v-for="(item, index) in lessons" :key="index">
+            <view class="cu-item shadow" v-for="(item, index) in lessons" :key="index" style="border-bottom: #dfdfdf solid 1upx;">
                 <view class="title" @click="toLessonDetail($event, item.tid)">
                     <view class="text-cut">{{item.title}}</view>
                 </view>

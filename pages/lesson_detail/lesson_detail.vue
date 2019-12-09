@@ -63,12 +63,12 @@
 		</view>
 		<view style="height: 130upx;"></view>
 		<view class="cu-bar bg-white tabbar border shop foot">
-			<view class="action" open-type="contact">
+			<button class="action" open-type="contact">
 				<view class="cuIcon-service text-green">
 					<!--view class="cu-tag badge"></view-->
 				</view>
 				<text class="text-greeny">客服</text>
-			</view>
+			</button>
 			<view class="action" :class="isFavor?'text-orange':'text-grey'" @click="favorite">
 				<view :class="isFavor?'cuIcon-favorfill':'cuIcon-favor'"></view>
 				{{isFavor?'已收藏':'收藏'}}

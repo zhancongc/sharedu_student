@@ -22,8 +22,15 @@
 				<input type="text" placeholder="搜索家教线索" confirm-type="search" @input="searchIcon" @confirm="search"></input>
 			</view>
 		</view>
-		<view class="cu-card article" :class="isCard?'no-card':''" style="margin-top: 94upx;">
-			<view class="cu-item shadow" v-for="(item, index) in tutors" :key="index">
+		<view style="margin-top: 120upx;"></view>
+		<view class="cu-bar bg-white margin-top" style="border-bottom: #dfdfdf solid 1upx;">
+		    <view class="action">
+		        <text class="cuIcon-title"></text>
+		        <text class="text-xl text-bold">名师推荐</text>
+		    </view>
+		</view>
+		<view class="cu-card article no-card">
+			<view class="cu-item shadow" v-for="(item, index) in tutors" :key="index" style="border-bottom: #dfdfdf solid 1upx;">
 				<view class="title" @click="toTutorDetail($event, item.tid)">
 					<view class="text-cut">{{item.title}}</view>
 				</view>
@@ -59,12 +66,13 @@
 	export default {
 		data() {
 			return {
-				tabbar: [{
+				tabbar: [
+				/*{
 					title: '首页',
 					icon: 'home',
 					choosed: false,
 					url: '/pages/catalog/catalog'
-				},{
+				},*/{
 					title: '找课',
 					icon: 'search',
 					choosed: false,
@@ -127,9 +135,7 @@
 			toTutorDetail(e, tid) {
 				console.log(e);
 				console.log("tid", tid);
-				uni.navigateTo({
-					url: '../index/index'
-				})
+				// uni.navigateTo({ url: '../index/index'})
 			},
 			searchIcon(e){console.log(e.currentTarget);},
 			search(e){

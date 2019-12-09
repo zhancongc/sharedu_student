@@ -74,9 +74,7 @@
 			toBillDetail(e, tid) {
 				console.log(e);
 				console.log("tid", tid);
-				uni.navigateTo({
-					url: '../index/index'
-				})
+				// uni.navigateTo({url: '../index/index'})
 			},
 			searchIcon(e){console.log(e.currentTarget);},
 			search(e){

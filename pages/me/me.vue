@@ -40,34 +40,40 @@
 			</view>
 		</view>
 		<view class="cu-list menu card-menu sm-border">
-			<view class="cu-item" :class="menuArrow?'arrow':''">
+			<view class="cu-item">
 				<view class="content" @click="jumpTo($event, toTutorAddUrl)">
 					<text class="cuIcon-friendadd text-black"></text>
 					<text class="text-black">注册成为家教</text>
 				</view>
 			</view>
-			<view class="cu-item" :class="menuArrow?'arrow':''">
+			<view class="cu-item">
 				<view class="content" @click="jumpTo($event, toStoreUrl)">
 					<text class="cuIcon-shop text-black"></text>
 					<text class="text-black">我的店铺</text>
 				</view>
 			</view>
+			<view class="cu-item">
+				<view class="content" @click="jumpTo($event, toLessonAddUrl)">
+					<text class="cuIcon-goods text-black"></text>
+					<text class="text-black">添加课程</text>
+				</view>
+			</view>
 		</view>
 		<view class="cu-list menu card-menu margin-top sm-border">
-			<view class="cu-item" :class="menuArrow?'arrow':''">
+			<view class="cu-item">
 				<view class="content" @click="jumpTo($event, toBillsUrl)">
 					<text class="cuIcon-text text-black"></text>
 					<text class="text-black">我的订单</text>
 				</view>
 			</view>
-			<view class="cu-item" :class="menuArrow?'arrow':''">
+			<view class="cu-item">
 				<button class="content" open-type="contact" style="text-align: left;">
 					<text class="cuIcon-service text-black"></text>
 					<text class="text-black">联系客服</text>
 				</button>
 			</view>
-			<view class="cu-item" :class="menuArrow?'arrow':''">
-				<view class="content" @click="jumpTo($event, toAboutUrl)">
+			<view class="cu-item">
+				<view class="content" @click="jumpTo($event, toIndexUrl)">
 					<text class="cuIcon-info text-black"></text>
 					<text class="text-black">关于享淘课</text>
 				</view>
@@ -80,12 +86,13 @@
 	export default {
 		data() {
 			return {
-				tabbar: [{
+				tabbar: [
+				/*{
 					title: '首页',
 					icon: 'home',
 					choosed: false,
 					url: '/pages/catalog/catalog'
-				},{
+				},*/{
 					title: '找课',
 					icon: 'search',
 					choosed: false,
@@ -104,10 +111,12 @@
 				avatarUrl : 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
 				nickname: '正义天使 凯尔',
 				toBillsUrl: '/pages/bills/bills',
+				toLessonAddUrl: '/pages/lesson_add/lesson_add',
 				//toTutorWantedUrl: '/pages/tutor_wanted/tutor_wanted',
 				toTutorAddUrl: '/pages/tutor_add/tutor_add',
 				toStoreUrl: '/pages/store/store',
-				toAboutUrl: '/pages/about/about'
+				toAboutUrl: '/pages/about/about',
+				toIndexUrl: '/pages/index/index',
 			}
 		},
 		onLoad() {

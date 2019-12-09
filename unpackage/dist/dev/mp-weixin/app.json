@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/catalog/catalog",
+    "pages/lessons/lessons",
     "pages/index/index",
     "pages/basics/layout",
     "pages/basics/background",
@@ -32,7 +32,7 @@
     "pages/tutor_add/tutor_add",
     "pages/tutor_wanted/tutor_wanted",
     "pages/tutors/tutors",
-    "pages/lessons/lessons",
+    "pages/catalog/catalog",
     "pages/store/store",
     "pages/search/search",
     "pages/me/me",
@@ -48,7 +48,11 @@
     "navigationStyle": "custom",
     "navigationBarTextStyle": "white"
   },
-  "permission": {},
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于推荐附近的线下课程和老师"
+    }
+  },
   "usingComponents": {
     "basics": "/pages/basics/home",
     "components": "/pages/component/home",

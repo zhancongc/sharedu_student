@@ -17,14 +17,40 @@
 				</view>
 			</view>
 		</view>
+		<view class="cu-modal" :class="showLocation?'show':''">
+			<view class="cu-dialog">
+				<view class="cu-bar bg-white justify-end">
+					<view class="content">Modal标题</view>
+					<view class="action" @tap="hideModal">
+						<text class="cuIcon-close text-red"></text>
+					</view>
+				</view>
+				<view class="padding-xl">
+					Modal 内容。
+				</view>
+				<view class="cu-bar bg-white justify-end">
+					<view class="action">
+						<button class="cu-btn line-green text-green" @tap="hideModal">取消</button>
+						<button class="cu-btn bg-green margin-left" @tap="getLocation">确定</button>
+					</view>
+				</view>
+			</view>
+		</view>
 		<view class="cu-bar bg-white search fixed" :style="[{top:CustomBar + 'px'}]">
 			<view class="search-form round">
 				<text class="cuIcon-search"></text>
 				<input type="text" placeholder="搜索培训课程" confirm-type="search" @input="searchIcon" @confirm="search"></input>
 			</view>
 		</view>
-		<view class="cu-card article" style="margin-top: 94rpx;">
-			<view class="cu-item shadow" v-for="(item, index) in lessons" :key="index">
+		<view style="margin-top: 120upx;"></view>
+		<view class="cu-bar bg-white margin-top" style="border-bottom: #dfdfdf solid 1upx;">
+		    <view class="action">
+		        <text class="cuIcon-title"></text>
+		        <text class="text-xl text-bold">课程推荐</text>
+		    </view>
+		</view>
+		<view class="cu-card article no-card">
+			<view class="cu-item shadow" v-for="(item, index) in lessons" :key="index" style="border-bottom: #dfdfdf solid 1upx;">
 				<view class="title" @click="toLessonDetail($event, item.tid)">
 					<view class="text-cut">{{item.title}}</view>
 				</view>
@@ -40,7 +66,7 @@
 								<text class="text-price" style="color: red">
 									{{item.price}}</text>
 							</view>
-							<view class="avatar-text">课时数{{item.times}}</view>
+							<view class="avatar-text">{{item.times}}课时</view>
 						</view>
 					</view>
 				</view>
@@ -57,12 +83,13 @@
 	export default {
 		data() {
 			return {
-				tabbar: [{
+				tabbar: [
+				/*{
 					title: '首页',
 					icon: 'home',
 					choosed: false,
 					url: '/pages/catalog/catalog'
-				},{
+				},*/{
 					title: '找课',
 					icon: 'search',
 					choosed: true,
@@ -108,16 +135,18 @@
 						createDate: '2019-11-28 08:22:00'
 					},
 				],
+				showLocation: false,
 			}
 		},
 		onLoad() {
-			uni.showLoading({
-				title: '加载中...',
-				mask: true
-			});
+			// uni.showLoading({title: '加载中...',mask: true});
+		},
+		onShow(){
+			
 		},
 		onReady() {
-			uni.hideLoading()
+			// uni.hideLoading()
+			this.getLocation()
 		},
 		methods: {
 			jumpTo(e, url){
@@ -134,7 +163,43 @@
 				uni.navigateTo({
 					url: '/pages/lesson_detail/lesson_detail?tid='+tid
 				})
-			}
+			},
+			showModal(e) {
+				this.showLocation = true
+			},
+			hideModal(e) {
+				this.showLocation = false
+			},
+			getLocation(e){
+				var that = this
+				uni.getLocation({
+					success(res){
+						let distance= that.getDistance(res.latitude, res.longitude, 31.18826, 121.43687)
+						uni.showToast({
+							icon: 'none',
+							title: '你离环贸' + distance + '米'
+						})
+					},
+					fail(res){console.log(res)},
+					complete(res){that.showLocation = false}
+				})
+			},
+			getDistance(x1, y1, x2, y2){
+				let R = 6371393; 
+				let C = this.cos(y1)*this.cos(y2)*this.cos(x1-x2) + this.sin(y1)*this.sin(y2);
+			    let Distance = R*this.arccos(C);
+			    return Distance;
+			},
+			arccos(i){
+			    return Math.acos(i);
+			},
+			cos(i){
+			    return Math.cos(i/180*Math.PI);
+			},
+			sin(i){
+			    return Math.sin(i/180*Math.PI);
+			},
+
 		}
 	}
 </script>
