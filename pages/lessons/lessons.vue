@@ -174,20 +174,22 @@
 				var that = this
 				uni.getLocation({
 					success(res){
-						let distance= that.getDistance(res.latitude, res.longitude, 31.18826, 121.43687)
+						console.log(res.latitude, res.longitude)
+						let distance= that.getDistance(res.latitude, res.longitude, 31.217370986938477, 121.45372009277344)
+						console.log(distance)
 						uni.showToast({
 							icon: 'none',
-							title: '你离环贸' + distance + '米'
+							title: '你离环贸' + (Math.round(distance)/1000).toFixed(2)+ '公里'
 						})
 					},
 					fail(res){console.log(res)},
 					complete(res){that.showLocation = false}
 				})
 			},
-			getDistance(x1, y1, x2, y2){
+			getDistance(latitude1, longitude1, latitude2, longitude2){
 				let R = 6371393; 
-				let C = this.cos(y1)*this.cos(y2)*this.cos(x1-x2) + this.sin(y1)*this.sin(y2);
-			    let Distance = R*this.arccos(C);
+				let C = this.cos(latitude1)*this.cos(latitude2)*this.cos(longitude1-longitude2) + this.sin(latitude1)*this.sin(latitude2);
+				let Distance = R*this.arccos(C);
 			    return Distance;
 			},
 			arccos(i){

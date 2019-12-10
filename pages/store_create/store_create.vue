@@ -82,13 +82,14 @@
         data() {
             return {
                 invitationCode: "",
-                owner: "",
                 storeName: "",
                 storeAddress: "",
+				coordinate: "",
                 manger: "",
                 managerPhone: "",
                 licenseImageList: [],
-                storeImageList: []
+                storeImageList: [],
+				
             }
         },
         methods: {
@@ -100,8 +101,9 @@
                 uni.chooseLocation({
                   success: function (res) {
                     if (res.errMsg == "chooseLocation:ok"){
-                        //console.log(res)
+                        console.log(res)
                         that.storeAddress = res.address
+						that.coordinate = (res.latitude, res.longitude)
                         that.$forceUpdate()
                     }
                   }
