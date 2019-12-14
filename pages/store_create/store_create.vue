@@ -84,7 +84,7 @@
                 invitationCode: "",
                 storeName: "",
                 storeAddress: "",
-				coordinate: "",
+								coordinate: "",
                 manger: "",
                 managerPhone: "",
                 licenseImageList: [],

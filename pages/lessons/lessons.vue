@@ -148,6 +148,14 @@
 			// uni.hideLoading()
 			this.getLocation()
 		},
+		onShareAppMessage(res){
+			console.log(res)
+			return {
+				path: '/pages/lesson/lesson',
+				title: '享淘课',
+				imageUrl: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg'
+			}
+		},
 		methods: {
 			jumpTo(e, url){
 				uni.navigateTo({

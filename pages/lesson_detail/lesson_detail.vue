@@ -69,17 +69,37 @@
 				</view>
 				<text class="text-greeny">客服</text>
 			</button>
-			<view class="action" :class="isFavor?'text-orange':'text-grey'" @click="favorite">
-				<view :class="isFavor?'cuIcon-favorfill':'cuIcon-favor'"></view>
-				{{isFavor?'已收藏':'收藏'}}
+			<view class="action" @click="favorite">
+				<view :class="isFavor?'cuIcon-favorfill text-orange':'cuIcon-favor text-grey'"></view>
+				<text class="text-greeny">{{isFavor?'已收藏':'收藏'}}</text>
 			</view>
-			<!--view class="action">
-				<view class="cuIcon-cart">
-					<view class="cu-tag badge">99</view>
+			<button class="action" open-type="share">
+				<view class="cuIcon-share">
+					<!--view class="cu-tag badge">99</view-->
 				</view>
-				购物车
-			</view-->
+				<text class="text-greeny">分享</text>
+			</button>
 			<view class="bg-red submit" @click="bookLesson">立即预约</view>
+		</view>
+		<view class="cu-modal" :class="modalName=='showShareLesson'?'show':''">
+			<view class="cu-dialog">
+				<view class="cu-bar bg-white justify-end">
+					<view class="content">Modal标题</view>
+					<view class="action" @tap="hideModal">
+						<text class="cuIcon-close text-red"></text>
+					</view>
+				</view>
+				<view class="padding-xl">
+					分享给一个好友解锁店家联系方式
+				</view>
+				<view class="cu-bar bg-white justify-end">
+					<view class="action">
+						<button class="cu-btn line-green text-green" @tap="hideModal">取消</button>
+						<button class="cu-btn bg-green margin-left" @tap="hideModal">确定</button>
+		
+					</view>
+				</view>
+			</view>
 		</view>
 	</view>
 </template>
@@ -124,6 +144,7 @@
 				TabCur: 0,
 				scrollLeft: 0,
 				lessonNav: ['简介', '评价'],
+				modalName: '',
                 // 店铺
                 storeId: "a123",
                 storeIcon: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
@@ -133,6 +154,7 @@
 				// 收藏
 				isFavor: false,
 				// form
+				lessonId: "a123",
 				lessonName: '英雄联盟新手训练课程',
 				lessonPrice: 299,
 				lessonTimes: 3,
@@ -142,6 +164,17 @@
 		},
 		onLoad(e){
 			console.log(e.tid)
+		},
+		onShareAppMessage(res){
+			console.log(res)
+			if (res.from =="menu"){
+				console.log("from menu")
+			}
+			return {
+				path: '/pages/lesson_detail/lesson_detail?lesson_id='+this.lessonId,
+				title: this.lessonName,
+				imageUrl: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg'
+			}
 		},
 		methods: {
 			tabSelect(e) {
@@ -167,7 +200,25 @@
                   },
                   fail(){console.log("fail")}
                 })
-            }
+            },
+			shareLesson(e){
+				var that = this
+				console.log(e)
+				uni.share({
+					provider: "weixin",
+					scene: "WXSceneSession",
+					title: that.lessonName,
+					type: 5,
+					title: that.lessonName,
+					imageUrl: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
+					miniProgram: {
+						id: 'wxd4fcc10a3bfe4d99',
+						path: 'pages/lesson_detail/lesson_detail',
+						type: 0,
+						webUrl: 'http://uniapp.dcloud.io'
+					},
+				})
+			}
 		}
 	}
 </script>
