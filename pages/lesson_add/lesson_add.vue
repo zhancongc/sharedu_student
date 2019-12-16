@@ -89,33 +89,35 @@
 				console.log("lessonType", this.lessonType);
 			},
 			MultiColumnChange(e) {
-			    let data = {
-			        multiArray: this.multiArray,
-			        multiIndex: this.multiIndex
-			    };
-			    data.multiIndex[e.detail.column] = e.detail.value;
-			    switch (e.detail.column) {
-			        case 0:
-						switch (data.multiIndex[0]) {
-							case 0:
-								data.multiArray[1] = ['语文', '数学', '英语', '物理', '化学', '生物'];
-								data.multiIndex[1] = 0;
-								break;
-							case 1:
-								data.multiArray[1] = ['游泳', '冲浪', '潜水', '瑜伽', '射箭', '举重', '围棋', '中国象棋', '国际象棋'];
-								data.multiIndex[1] = 0;
-								break;
-							case 2:
-								data.multiArray[1] = ['钢琴', '小提琴', '贝斯', '吉他', '萨克斯', '萧笛', '古筝', '二胡', '琵琶'];
-								data.multiIndex[1] = 0;
-								break;
-						}
-					case 1:
-						data.multiIndex[1] = e.detail.value;
-						break;
-			    }
-			    this.multiArray = data.multiArray;
-			    this.multiIndex = data.multiIndex;
+				let data = {
+						multiArray: this.multiArray,
+						multiIndex: this.multiIndex
+				};
+				console.log(e);
+				data.multiIndex[e.detail.column] = e.detail.value;
+				switch (e.detail.column) {
+						case 0:
+					switch (data.multiIndex[0]) {
+						case 0:
+							data.multiArray[1] = ['语文', '数学', '英语', '物理', '化学', '生物'];
+							data.multiIndex[1] = 0;
+							break;
+						case 1:
+							data.multiArray[1] = ['游泳', '冲浪', '潜水', '瑜伽', '射箭', '举重', '围棋', '中国象棋', '国际象棋'];
+							data.multiIndex[1] = 0;
+							break;
+						case 2:
+							data.multiArray[1] = ['钢琴', '小提琴', '贝斯', '吉他', '萨克斯', '萧笛', '古筝', '二胡', '琵琶'];
+							data.multiIndex[1] = 0;
+							break;
+					}
+				case 1:
+					data.multiIndex[1] = e.detail.value;
+					break;
+				}
+				this.multiArray = data.multiArray;
+				this.multiIndex = data.multiIndex;
+				console.log()
 				this.$forceUpdate();
 			},
 			ChooseImage(e) {
