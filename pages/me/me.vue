@@ -79,6 +79,9 @@
 				</view>
 			</view>
 		</view>
+		<view class="bg-shadeTop" style="background-color: #888888;">
+			
+		</view>
 	</view>
 </template>
 
