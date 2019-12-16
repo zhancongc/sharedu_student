@@ -121,42 +121,46 @@
 				this.$forceUpdate();
 			},
 			ChooseImage(e) {
-                var num = 4 - this.data.goodsImageList.length
+                var that = this
+                var num = 4 - that.lessonImage.length
+                
                 if (num < 1) {
                   wx.showToast({title: '图片不能超过4张',})
                   return ;
                 }
                 uni.chooseImage({
-                        count: num, //默认9
-                        sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-                        sourceType: ['album'], //从相册选择
-                        success: (res) => {
-                                if (this.lessonImage.length != 0) {
-                                        this.lessonImage = this.lessonImage.concat(res.tempFilePaths)
-                                } else {
-                                        this.lessonImage = res.tempFilePaths
-                                }
+                    count: num, //默认9
+                    sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+                    sourceType: ['album'], //从相册选择
+                    success: (res) => {
+                        if (that.lessonImage.length != 0) {
+                                that.lessonImage = that.lessonImage.concat(res.tempFilePaths)
+                        } else {
+                                that.lessonImage = res.tempFilePaths
                         }
+                    }
                 });
 			},
 			ViewImage(e) {
-			        uni.previewImage({
-			                urls: this.lessonImage,
-			                current: e.currentTarget.dataset.url
-			        });
+                var that = this
+                uni.previewImage({
+                    urls: that.lessonImage,
+                    current: e.currentTarget.dataset.url
+                });
 			},
 			DelImg(e) {
-			        uni.showModal({
-			                title: '你好',
-			                content: '确定要删除图片吗？',
-			                cancelText: '取消',
-			                confirmText: '确定',
-			                success: res => {
-			                        if (res.confirm) {
-			                                this.lessonImage.splice(e.currentTarget.dataset.index, 1)
-			                        }
-			                }
-			        })
+                var that = this
+                uni.showModal({
+                    title: '你好',
+                    content: '确定要删除图片吗？',
+                    cancelText: '取消',
+                    confirmText: '确定',
+                    success: res => {
+                        if (res.confirm) {
+                            that.lessonImage.splice(e.currentTarget.dataset.index, 1)
+                        }
+                    }
+                })
 			},
 		}
 	}
