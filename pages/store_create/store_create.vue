@@ -137,17 +137,17 @@
                     });
             },
             DelImg(e) {
-                    uni.showModal({
-                            title: '你好',
-                            content: '确定要删除图片吗？',
-                            cancelText: '取消',
-                            confirmText: '确定',
-                            success: res => {
-                                    if (res.confirm) {
-                                            this.storeImageList.splice(e.currentTarget.dataset.index, 1)
-                                    }
-                            }
-                    })
+							uni.showModal({
+								title: '你好',
+								content: '确定要删除图片吗？',
+								cancelText: '取消',
+								confirmText: '确定',
+								success: res => {
+									if (res.confirm) {
+										this.storeImageList.splice(e.currentTarget.dataset.index, 1)
+									}
+								}
+							})
             },
             createCommit(e){
                 uni.request({

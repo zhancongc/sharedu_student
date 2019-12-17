@@ -56,7 +56,7 @@
 		    </view>
 		</view>
 		<view class="padding flex flex-direction">
-			<button class="cu-btn bg-mauve margin-tb-sm lg" @click="createCommit">提交</button>
+			<button class="cu-btn bg-mauve margin-tb-sm lg" @click="submit">提交</button>
 		</view>
 	</view>
 </template>
@@ -75,7 +75,8 @@
 					['语文', '数学', '英语', '物理', '化学', '生物']
 				],
 				multiIndex: [0, 0],
-				lessonImage: []
+				lessonImage: [],
+				lessonImageUrl: []
 			}
 		},
 		methods: {
@@ -121,23 +122,39 @@
 				this.$forceUpdate();
 			},
 			ChooseImage(e) {
-                var num = 4 - this.data.goodsImageList.length
-                if (num < 1) {
-                  wx.showToast({title: '图片不能超过4张',})
-                  return ;
-                }
-                uni.chooseImage({
-                        count: num, //默认9
-                        sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-                        sourceType: ['album'], //从相册选择
-                        success: (res) => {
-                                if (this.lessonImage.length != 0) {
-                                        this.lessonImage = this.lessonImage.concat(res.tempFilePaths)
-                                } else {
-                                        this.lessonImage = res.tempFilePaths
-                                }
-                        }
-                });
+				var that = this
+				var num = 4 - this.lessonImage.length
+				if (num < 1) {
+					wx.showToast({title: '图片不能超过4张',})
+					return ;
+				}
+				uni.chooseImage({
+					count: num, //默认9
+					sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+					sourceType: ['album'], //从相册选择
+					success: (res) => {
+						if (this.lessonImage.length != 0) {
+							this.lessonImage = this.lessonImage.concat(res.tempFilePaths)
+						} else {
+							this.lessonImage = res.tempFilePaths
+						}
+						uni.uploadFile({
+							url: 'http://127.0.0.1:8000/files/upload',
+							methods: 'POST',
+							name: 'image',
+							filePath: res.tempFilePaths[0],
+							success(res){
+								console.log(res)
+								if (res.statusCode==200){
+									let response = JSON.parse(res.data)
+									that.lessonImageUrl.push(response.data.imageUrl)
+								}
+							},
+							fail(res){},
+							complete(res){}
+						})
+					}
+				});
 			},
 			ViewImage(e) {
 			        uni.previewImage({
@@ -146,17 +163,63 @@
 			        });
 			},
 			DelImg(e) {
-			        uni.showModal({
-			                title: '你好',
-			                content: '确定要删除图片吗？',
-			                cancelText: '取消',
-			                confirmText: '确定',
-			                success: res => {
-			                        if (res.confirm) {
-			                                this.lessonImage.splice(e.currentTarget.dataset.index, 1)
-			                        }
-			                }
-			        })
+				uni.showModal({
+					title: '你好',
+					content: '确定要删除图片吗？',
+					cancelText: '取消',
+					confirmText: '确定',
+					success: res => {
+						if (res.confirm) {
+							this.lessonImage.splice(e.currentTarget.dataset.index, 1)
+							this.lessonImageUrl.splice(e.currentTarget.dataset.index, 1)
+						}
+					}
+				})
+			},
+			submit(e){
+				var that = this
+				const app = getApp()
+				uni.showLoading({
+					title: '数据上传中'
+				})
+				uni.request({
+					method: "POST",
+					url: app.globalData.domainUrl + "lesson/create",
+					header: {'content-type': 'application/x-www-form-urlencoded'},
+					data: {
+						name: that.lessonName,
+						lesson_type: that.lessonType,
+						times: that.lessonTimes,
+						price: that.lessonPrice,
+						intro: that.lessonIntro,
+						image_list: that.lessonImageUrl
+					},
+					success(res){
+						console.log(res)
+						if (res.statusCode==200){
+							let response = res.data
+							if (response.msg == 'ok'){
+								console.log(response)
+								uni.hideLoading()
+								uni.showToast({
+									title: '提交成功',
+									duration: 2000,
+									icon: 'success'
+								})
+							}
+						}
+					},
+					fail(res){
+						console.log(res)
+						uni.hideLoading()
+						uni.showToast({
+							title: '提交成功',
+							duration: 2000,
+							icon: 'success'
+						})
+					},
+					complete(res){}
+				})
 			},
 		}
 	}

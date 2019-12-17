@@ -109,10 +109,11 @@
 		onHide: function() {
 			console.log('App Hide')
 		},
-        globalData: {
-            isTutor: false,
-            isStoreOwner: true,
-        }
+		globalData: {
+			isTutor: false,
+			isStoreOwner: true,
+			domainUrl: "http://127.0.0.1:8000/",
+		}
 	}
 </script>
 
