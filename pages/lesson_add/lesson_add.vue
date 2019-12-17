@@ -157,10 +157,11 @@
 				});
 			},
 			ViewImage(e) {
-			        uni.previewImage({
-			                urls: this.lessonImage,
-			                current: e.currentTarget.dataset.url
-			        });
+                var that = this
+                uni.previewImage({
+                    urls: that.lessonImage,
+                    current: e.currentTarget.dataset.url
+                });
 			},
 			DelImg(e) {
 				uni.showModal({
