@@ -129,7 +129,7 @@
 					return ;
 				}
 				uni.chooseImage({
-					count: num, //默认9
+					count:1, //默认9
 					sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
 					sourceType: ['album'], //从相册选择
 					success: (res) => {
@@ -138,6 +138,9 @@
 						} else {
 							this.lessonImage = res.tempFilePaths
 						}
+                        uni.showLoading({
+                            
+                        })
 						uni.uploadFile({
 							url: 'http://127.0.0.1:8000/files/upload',
 							methods: 'POST',
@@ -147,8 +150,25 @@
 								console.log(res)
 								if (res.statusCode==200){
 									let response = JSON.parse(res.data)
-									that.lessonImageUrl.push(response.data.imageUrl)
-								}
+                                    console.log(response)
+                                    if (response.msg == "ok"){
+                                        that.lessonImageUrl = that.lessonImageUrl.concat([response.data.imageUrl])
+                                        uni.hideLoading()
+                                        uni.showToast({
+                                            title: '上传成功',
+                                            duration: 2000,
+                                            icon: 'success'
+                                        })
+                                        return ;
+                                    }
+                                }
+                                this.lessonImage.pop()
+                                uni.hideLoading()
+                                uni.showToast({
+                                	title: '上传失败',
+                                	duration: 2000,
+                                	icon: 'fail'
+                                })
 							},
 							fail(res){},
 							complete(res){}
@@ -207,16 +227,24 @@
 									duration: 2000,
 									icon: 'success'
 								})
-							}
+                                uni.navigateBack()
+							} else {
+                                uni.hideLoading()
+                                uni.showToast({
+                                	title: '提交失败',
+                                	duration: 2000,
+                                	icon: 'none'
+                                })
+                            }
 						}
 					},
 					fail(res){
 						console.log(res)
 						uni.hideLoading()
 						uni.showToast({
-							title: '提交成功',
+							title: '提交失败',
 							duration: 2000,
-							icon: 'success'
+							icon: 'none'
 						})
 					},
 					complete(res){}
