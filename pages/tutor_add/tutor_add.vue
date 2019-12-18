@@ -101,17 +101,17 @@
 		<!--view class="padding flex flex-direction">
 			<button form-type="submit" class="cu-btn bg-mauve margin-tb-sm lg" @click="tutorSubmit">提交</button>
 		</view-->
-        <view class="cu-bar bg-white solid-bottom margin-top" style="position: relative;">
-        	<view class="action" v-if="num!=0">
-        		<button class="cu-btn bg-green shadow" @tap="PreviousSteps">上一步</button>
-        	</view>
-        	<view class="action" v-if="num==0" style="position: absolute; right: 0px;">
-        		<button class="cu-btn bg-green shadow" @tap="NextSteps">下一步</button>
-        	</view>
-        	<view class="action" v-if="num==1">
-        		<button class="cu-btn bg-green shadow">提 交</button>
-        	</view>
-        </view>
+		<view class="cu-bar bg-white solid-bottom margin-top" style="position: relative;">
+			<view class="action" v-if="num!=0">
+				<button class="cu-btn bg-green shadow" @tap="PreviousSteps">上一步</button>
+			</view>
+			<view class="action" v-if="num==0" style="position: absolute; right: 0px;">
+				<button class="cu-btn bg-green shadow" @tap="NextSteps">下一步</button>
+			</view>
+			<view class="action" v-if="num==1">
+				<button class="cu-btn bg-orange shadow">提 交</button>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -156,8 +156,8 @@
 					name: '实名认证'
 				}, ],
 				num: 0,
-                idCardImageList: [],
-                certificateImageList: []
+				idCardImageList: [],
+				certificateImageList: []
 			}
 		},
 		methods: {
@@ -171,12 +171,12 @@
 					this.num = this.num - 1;
 				}
 			},
-            getPhoneNumber (e) {
-                console.log(e);
-                if (e.type=="getphonenumber"){
-                    
-                }
-            },
+			getPhoneNumber (e) {
+					console.log(e);
+					if (e.type=="getphonenumber"){
+							
+					}
+			},
 			degreeChange(e) {
 				this.degreeIndex = e.detail.value;
 			},
