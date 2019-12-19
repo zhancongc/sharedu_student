@@ -19,26 +19,64 @@
 				<view class="cu-form-group">
 						<view class="title">商户名称</view>
 						<input placeholder="请输入商户名称"  type="text" maxlength="20"
-								focus="true" @input="setStoreName"></input>
+							focus="true" @input="setStoreName"></input>
+				</view>
+				<view class="cu-form-group">
+				    <view class="title">城市</view>
+				    <picker mode="region" @change="RegionChange" :value="region" name="region" maxlength="20">
+				        <view class="picker" style="text-align: left;">
+				            {{region[0]}}，{{region[1]}}，{{region[2]}}
+				        </view>
+				    </picker>
 				</view>
 				<view class="cu-form-group">
 						<view class="title">详细地址</view>
 						<input placeholder="请输入商户地址"  type="text" maxlength="30" v-model="storeAddress"
-								focus="true" @input="setStoreAddress"></input>
+							@input="setStoreAddress"></input>
 						<text class='cuIcon-locationfill text-orange' @click="getLocation"></text>
 				</view>
 				<view class="cu-form-group">
 						<view class="title">负责人</view>
 						<input placeholder="请输入商户主要负责人"  type="text" maxlength="12"
-								focus="true" @input="setManager"></input>
+							@input="setManager"></input>
 				</view>
 				<view class="cu-form-group">
 						<view class="title">联系手机</view>
 						<input placeholder="请输入负责人手机号码"  type="number" maxlength="11"
-								focus="true" @input="setManagerPhone"></input>
+							@input="setManagerPhone"></input>
+				</view>
+				<view class="cu-bar bg-white solid-bottom margin-top">
+				  <view class="action">
+				    <text class="text-black">店铺简介</text>
+				  </view>
+				</view>
+				<view class="cu-form-group">
+				    <textarea maxlength="500" @input="setStoreIntro" type="text"
+						placeholder="请输入店铺简介"></textarea>
 				</view>
 			</block>
 			<block v-if="num == 1">
+				<view class="cu-bar bg-white margin-top">
+						<view class="action">
+				<text class="text-black">上传商户logo</text>
+						</view>
+						<!--view class="action">
+								{{storeImageList.length}}/4
+						</view-->
+				</view>
+				<view class="cu-form-group">
+						<view class="grid col-4 grid-square flex-sub">
+								<view class="bg-img" v-for="(item,index) in avatar" :key="index" @tap="ViewImage" :data-url="avatar[index]">
+								 <image :src="avatar[index]" mode="aspectFill"></image>
+										<view class="cu-tag bg-red" @tap.stop="DelImg($event, 'avatar')" :data-index="index">
+												<text class='cuIcon-close'></text>
+										</view>
+								</view>
+								<view class="solids" @tap="ChooseImage($event, 'avatar')" v-if="avatar.length<1">
+										<text class='cuIcon-cameraadd'></text>
+								</view>
+						</view>
+				</view>
 				<view class="cu-bar bg-white margin-top">
 						<view class="action">
 								<text class="text-black">上传营业执照图片</text>
@@ -51,7 +89,7 @@
 						<view class="grid col-4 grid-square flex-sub">
 								<view class="bg-img" v-for="(item,index) in licenseImageList" :key="index" @tap="ViewImage" :data-url="licenseImageList[index]">
 								 <image :src="licenseImageList[index]" mode="aspectFill"></image>
-										<view class="cu-tag bg-red" @tap.stop="DelImg" :data-index="index">
+										<view class="cu-tag bg-red" @tap.stop="DelImg($event, 'license')" :data-index="index">
 												<text class='cuIcon-close'></text>
 										</view>
 								</view>
@@ -62,7 +100,7 @@
 				</view>
 				<view class="cu-bar bg-white margin-top">
 						<view class="action">
-				<text class="text-black">上传商户经营场所图片</text>
+				<text class="text-black">上传商户资料图片</text>
 						</view>
 						<view class="action">
 								{{storeImageList.length}}/4
@@ -72,7 +110,7 @@
 						<view class="grid col-4 grid-square flex-sub">
 								<view class="bg-img" v-for="(item,index) in storeImageList" :key="index" @tap="ViewImage" :data-url="storeImageList[index]">
 								 <image :src="storeImageList[index]" mode="aspectFill"></image>
-										<view class="cu-tag bg-red" @tap.stop="DelImg" :data-index="index">
+										<view class="cu-tag bg-red" @tap.stop="DelImg($event, 'photo')" :data-index="index">
 												<text class='cuIcon-close'></text>
 										</view>
 								</view>
@@ -112,11 +150,15 @@
 						}],
 						invitationCode: "",
 						storeName: "",
+						region: ['北京市', '北京市', '东城区'],
 						storeAddress: "",
 						latitude: "",
 						longitude: "",
 						manger: "",
 						managerPhone: "",
+						storeIntro: '',
+						avatar: [],
+						avatarUrl: [],
 						licenseImageList: [],
 						licenseImageListUrl: [],
 						storeImageList: [],
@@ -136,20 +178,22 @@
 					},
           setInvitationCode(e) {this.invitationCode = e.detail.value},
           setStoreName(e) {this.storeName = e.detail.value},
+					RegionChange(e) {this.region = e.detail.value;},
           setStoreAddress(e) {this.storeAddress = e.detail.value},
+					setStoreIntro(e) {this.storeIntro = e.detail.value},
           getLocation(e) {
-              var that = this;
-              uni.chooseLocation({
-                success: function (res) {
-                  if (res.errMsg == "chooseLocation:ok"){
-                      console.log(res)
-                      that.storeAddress = res.address
-                      that.latitude = res.latitude
-                      that.longitude = res.longitude
-                      that.$forceUpdate()
-                  }
-                }
-              })
+						var that = this;
+						uni.chooseLocation({
+							success: function (res) {
+								if (res.errMsg == "chooseLocation:ok"){
+										console.log(res)
+										that.storeAddress = res.address
+										that.latitude = res.latitude
+										that.longitude = res.longitude
+										that.$forceUpdate()
+								}
+							}
+						})
           },
           setManager(e) {this.manger = e.detail.value},
           setManagerPhone(e) {this.managerPhone = e.detail.value},
@@ -164,6 +208,9 @@
 						} else if (type == 'photo'){
 							images = that.storeImageList
 							image_list = that.storeImageListUrl
+						} else if (type=='avatar') {
+							images = that.avatar
+							image_list = that.avatarUrl
 						}
 						var num = 4 - images.length
 						if (num < 1) {
@@ -193,28 +240,29 @@
 												} else if (type == 'photo'){
 													that.storeImageList = that.storeImageList.concat(tempImageList)
 													that.storeImageListUrl = that.storeImageListUrl.concat([response.data.imageUrl])
+												} else if (type=='avatar') {
+													that.avatar = that.avatar.concat(tempImageList)
+													that.avatarUrl = that.avatarUrl.concat([response.data.imageUrl])
 												}
-												uni.hideLoading()
 												uni.showToast({
 														title: '上传成功',
-														duration: 2000,
+														duration: 1000,
 														icon: 'success'
 												})
 												return ;
 											}
 										}
-										uni.hideLoading()
 										uni.showToast({
 											title: '上传失败',
-											duration: 2000,
+											duration: 1000,
 											icon: 'fail'
 										})
 									},
 									fail(res){},
-									complete(res){}
+									complete(res){uni.hideLoading()}
 								})
 							}
-						});
+						})
           },
           ViewImage(e) {
 						uni.previewImage({
@@ -222,7 +270,7 @@
 							current: e.currentTarget.dataset.url
 						});
           },
-          DelImg(e) {
+          DelImg(e, type) {
             uni.showModal({
               title: '你好',
               content: '确定要删除图片吗？',
@@ -230,7 +278,16 @@
               confirmText: '确定',
               success: res => {
                 if (res.confirm) {
-                  this.storeImageList.splice(e.currentTarget.dataset.index, 1)
+									if ( type == 'avatar') {
+										this.avatar.splice(e.currentTarget.dataset.index, 1)
+										this.avatarUrl.splice(e.currentTarget.dataset.index, 1)
+									} else if (type == 'license') {
+										this.licenseImageList.splice(e.currentTarget.dataset.index, 1)
+										this.licenseImageListUrl.splice(e.currentTarget.dataset.index, 1)
+									} else if (type == 'photo') {
+										this.storeImageList.splice(e.currentTarget.dataset.index, 1)
+										this.storeImageListUrl.splice(e.currentTarget.dataset.index, 1)
+									}
                 }
               }
             })
@@ -259,15 +316,21 @@
           })
           uni.request({
             method: "POST",
-            url: app.globalData.domainUrl + "lesson/create",
+            url: app.globalData.domainUrl + "store/create",
             header: {'content-type': 'application/x-www-form-urlencoded'},
             data: {
               invitation_code: that.invitationCode,
               name: that.storeName,
-              avatar: that.avatar,
-              city: that.city,
-              intro: that.storeIntro,
-              image_list: that.lessonImageUrl
+              avatar: that.avatarUrl,
+							intro: that.storeIntro,
+              city: that.region.join(),
+							address: that.storeAddress,
+							latitude: that.latitude,
+							longitude: that.longitude,
+							manager: that.manger,
+							manager_phone: that.managerPhone,
+							license_image_list: that.licenseImageListUrl,
+              photo_list: that.storeImageListUrl
             },
             success(res){
               console.log(res)
@@ -275,18 +338,16 @@
                 let response = res.data
                 if (response.msg == 'ok'){
                   console.log(response)
-                  uni.hideLoading()
                   uni.showToast({
                     title: '提交成功',
-                    duration: 2000,
+                    duration: 1000,
                     icon: 'success'
                   })
                   uni.navigateBack()
                 } else {
-                    uni.hideLoading()
                     uni.showToast({
                       title: '提交失败',
-                      duration: 2000,
+                      duration: 1000,
                       icon: 'none'
                     })
                 }
@@ -294,14 +355,13 @@
             },
             fail(res){
               console.log(res)
-              uni.hideLoading()
               uni.showToast({
                 title: '提交失败',
-                duration: 2000,
+                duration: 1000,
                 icon: 'none'
               })
             },
-            complete(res){}
+            complete(res){uni.hideLoading()}
           })
         },
       }

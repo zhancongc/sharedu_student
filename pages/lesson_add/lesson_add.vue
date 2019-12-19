@@ -152,7 +152,7 @@
                     uni.hideLoading()
                     uni.showToast({
                         title: '上传成功',
-                        duration: 2000,
+                        duration: 1000,
                         icon: 'success'
                     })
                     this.lessonImage = this.lessonImage.concat(res.tempFilePaths)
@@ -162,7 +162,7 @@
                 uni.hideLoading()
                 uni.showToast({
                   title: '上传失败',
-                  duration: 2000,
+                  duration: 1000,
                   icon: 'fail'
                 })
               },
@@ -235,7 +235,7 @@
                 uni.hideLoading()
                 uni.showToast({
                   title: '提交成功',
-                  duration: 2000,
+                  duration: 1000,
                   icon: 'success'
                 })
                 uni.navigateBack()
@@ -243,7 +243,7 @@
                   uni.hideLoading()
                   uni.showToast({
                     title: '提交失败',
-                    duration: 2000,
+                    duration: 1000,
                     icon: 'none'
                   })
               }
@@ -254,7 +254,7 @@
             uni.hideLoading()
             uni.showToast({
               title: '提交失败',
-              duration: 2000,
+              duration: 1000,
               icon: 'none'
             })
           },
