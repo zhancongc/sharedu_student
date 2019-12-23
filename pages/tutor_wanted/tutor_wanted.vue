@@ -128,7 +128,6 @@
 </template>
 
 <script>
-	var validator = require('wxvalidator');
 	export default {
 		data() {
 			return {
@@ -186,13 +185,10 @@
 				duration: '' , // 每次时长
 				tutorRequest: '' ,// 对家教的要求
 				gender: ['男', '女'],
-				numList: [{
-					name: '基本信息'
-				}, {
-					name: '学生情况'
-				}, {
-                    name: '老师要求'
-                }],
+				numList: [
+					{name: '基本信息'},
+					{name: '学生情况'},
+					{name: '老师要求'}],
 				num: 0
 			}
 		},

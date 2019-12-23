@@ -16,7 +16,29 @@
 				</view>
 			</view>
 		</view>
-		<view class="cu-card case" :class="isCard?'no-card':''">
+		
+		<view class="cu-modal" :class="modalName=='authorize'?'show':''">
+			<view class="cu-dialog">
+				<view class="cu-bar bg-white justify-end">
+					<view class="content">微信授权</view>
+					<!--view class="action" @tap="hideModal">
+						<text class="cuIcon-close text-red"></text>
+					</view-->
+				</view>
+				<view class="padding-xl">
+					为了更好的服务和体验，我们需要您微信授权。
+				</view>
+				<view class="cu-bar bg-white justify-end">
+					<view class="action">
+						<!--button class="cu-btn line-green text-green" @tap="cancelAuthorize">取消</button-->
+						<button class="cu-btn bg-green justify-center" 
+							open-type="getUserInfo" @click="authorizeHandler">确定</button>
+					</view>
+				</view>
+			</view>
+		</view>
+		
+		<view class="cu-card case card">
 			<view class="cu-item shadow">
 				<view class="cu-list menu-avatar">
 					<view class="cu-item">
@@ -111,8 +133,11 @@
 					choosed: true,
 					url: '/pages/me/me'
 				}],
-				avatarUrl : 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
-				nickname: '正义天使 凯尔',
+				modalName: null,
+				// avatarUrl : 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
+				// nickname: '正义天使 凯尔',
+				avatarUrl: '',
+				nickname: '',
 				toBillsUrl: '/pages/bills/bills',
 				toLessonAddUrl: '/pages/lesson_add/lesson_add',
 				//toTutorWantedUrl: '/pages/tutor_wanted/tutor_wanted',
@@ -123,15 +148,75 @@
 			}
 		},
 		onLoad() {
+			const app = getApp()
+			var that = this
 			uni.showLoading({
 				title: '加载中...',
 				mask: true
 			});
+			if(app.globalData.userInfo == null) {
+				uni.getSetting({
+					success(res){
+						if (res.authSetting['scope.userInfo']){
+							uni.getUserInfo({
+								success(res){
+									if (res.errMsg == "getUserInfo:ok") {
+										app.globalData.userInfo = res.userInfo
+									} else {
+										that.modalName = 'authorize'
+									}
+								},
+								fail(res){
+									that.modalName = 'authorize'
+								}
+							})
+						} else {
+							that.modalName = 'authorize'
+						}
+					},
+					fail(res){
+						console.log(res)
+						that.modalName = 'authorize'
+					}
+				})
+			} else {
+				that.avatarUrl = app.globalData.userInfo.avatarUrl
+				that.nickname = app.globalData.userInfo.nickName
+			}
 		},
 		onReady() {
 			uni.hideLoading()
 		},
+		onShow() {},
 		methods: {
+			showModal(e) {
+				this.modalName = e.currentTarget.dataset.target
+			},
+			hideModal(e) {
+				this.modalName = null
+			},
+			// cancelAuthorize(e){uni.navigateBack()},
+			authorizeHandler(e){
+				var that = this
+				const app = getApp()
+				console.log(e)
+				wx.getUserInfo({
+					success(res){
+						console.log(res)
+						if (res.errMsg == "getUserInfo:ok"){
+							app.globalData.userInfo = res.userInfo
+							that.avatarUrl = res.userInfo.avatarUrl
+							that.nickname = res.userInfo.nickName
+							uni.setStorage({key: "userInfo", data:res.userInfo})
+							uni.setStorage({key: "encryptedData", data:res.encryptedData})
+							uni.setStorage({key: "iv", data:res.iv})
+							uni.setStorage({key: "rawData", data:res.rawData})
+							uni.setStorage({key: "signature", data:res.signature})
+							that.hideModal()
+						}
+					}
+				})
+			},
 			jumpTo(e, url){
 				uni.navigateTo({
 					url: url

@@ -116,7 +116,7 @@
 </template>
 
 <script>
-	var validator = require('wxvalidator');
+	import {checkText, checkList} from "../../utils.js"
 	export default {
 		data() {
 			return {
