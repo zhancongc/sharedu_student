@@ -2,10 +2,10 @@
 	import Vue from 'vue'
 	export default {
 		globalData: {
-			isTutor: false,
-			isStoreOwner: true,
+			tutorId: 0,
+			storeId: 0,
 			domainUrl: "http://127.0.0.1:8000/",
-			userInfo: null,
+			userInfo: "",
 		},
 		onLaunch: function() {
 			var that = this
@@ -50,7 +50,8 @@
 				{title: '墨黑',name: 'black',color: '#333333'},
 				{title: '雅白',name: 'white',color: '#ffffff'},
 			]
-			if (that.globalData.userInfo == null) {
+			that.globalData.userInfo = uni.getStorageSync('userInfo')
+			if (that.globalData.userInfo == "") {
 				uni.getSetting({
 					success(res){
 						console.log(res)
@@ -60,6 +61,11 @@
 									success(e) {
 										console.log(e)
 										that.globalData.userInfo = e.userInfo
+										uni.setStorage({key: "userInfo", data:e.userInfo})
+										uni.setStorage({key: "encryptedData", data:e.encryptedData})
+										uni.setStorage({key: "iv", data:e.iv})
+										uni.setStorage({key: "rawData", data:e.rawData})
+										uni.setStorage({key: "signature", data:e.signature})
 									}
 								})
 							}
@@ -67,6 +73,22 @@
 					}
 				})
 			}
+			wx.login({
+				success(res){
+					console.log(res)
+					if (res.code){
+						wx.request({
+							method: 'POST',
+							url: that.domainUrl + 'login',
+							data: {code: res.code},
+							header: {'content-type': 'application/x-www-form-urlencoded'},
+							success(res){},
+							fail(res){},
+							complete(res){}
+						})
+					}
+				}
+			})
 		},
 		onShow: function() {
 			console.log('App Show')

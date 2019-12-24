@@ -343,6 +343,7 @@
                     duration: 1000,
                     icon: 'success'
                   })
+									app.globalData.storeId = response.data.store_id
                   uni.navigateBack()
                 } else {
                     uni.showToast({

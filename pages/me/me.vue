@@ -154,19 +154,26 @@
 				title: '加载中...',
 				mask: true
 			});
-			if(app.globalData.userInfo == null) {
+			if(app.globalData.userInfo == "") {
 				uni.getSetting({
 					success(res){
 						if (res.authSetting['scope.userInfo']){
 							uni.getUserInfo({
-								success(res){
-									if (res.errMsg == "getUserInfo:ok") {
-										app.globalData.userInfo = res.userInfo
+								success(e){
+									// console.log(e)
+									if (e.errMsg == "getUserInfo:ok") {
+										app.globalData.userInfo = e.userInfo
+										uni.setStorage({key: "userInfo", data:e.userInfo})
+										uni.setStorage({key: "encryptedData", data:e.encryptedData})
+										uni.setStorage({key: "iv", data:e.iv})
+										uni.setStorage({key: "rawData", data:e.rawData})
+										uni.setStorage({key: "signature", data:e.signature})
 									} else {
 										that.modalName = 'authorize'
 									}
 								},
-								fail(res){
+								fail(e){
+									// console.log(e)
 									that.modalName = 'authorize'
 								}
 							})
@@ -175,7 +182,7 @@
 						}
 					},
 					fail(res){
-						console.log(res)
+						// console.log(res)
 						that.modalName = 'authorize'
 					}
 				})
@@ -196,22 +203,22 @@
 				this.modalName = null
 			},
 			// cancelAuthorize(e){uni.navigateBack()},
-			authorizeHandler(e){
+			userHandler(e){console.log(e.detail)},
+			authorizeHandler(event){
 				var that = this
 				const app = getApp()
-				console.log(e)
-				wx.getUserInfo({
-					success(res){
-						console.log(res)
-						if (res.errMsg == "getUserInfo:ok"){
-							app.globalData.userInfo = res.userInfo
-							that.avatarUrl = res.userInfo.avatarUrl
-							that.nickname = res.userInfo.nickName
-							uni.setStorage({key: "userInfo", data:res.userInfo})
-							uni.setStorage({key: "encryptedData", data:res.encryptedData})
-							uni.setStorage({key: "iv", data:res.iv})
-							uni.setStorage({key: "rawData", data:res.rawData})
-							uni.setStorage({key: "signature", data:res.signature})
+				uni.getUserInfo({
+					success(e){
+						console.log(e)
+						if (e.errMsg == "getUserInfo:ok") {
+							that.avatarUrl = e.userInfo.avatarUrl
+							that.nickname = e.userInfo.nickName
+							app.globalData.userInfo = e.userInfo
+							uni.setStorage({key: "userInfo", data:e.userInfo})
+							uni.setStorage({key: "encryptedData", data:e.encryptedData})
+							uni.setStorage({key: "iv", data:e.iv})
+							uni.setStorage({key: "rawData", data:e.rawData})
+							uni.setStorage({key: "signature", data:e.signature})
 							that.hideModal()
 						}
 					}
