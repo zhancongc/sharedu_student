@@ -6,6 +6,35 @@
 			storeId: 0,
 			domainUrl: "http://127.0.0.1:8000/",
 			userInfo: "",
+			openId: '',
+		},
+		methods: {
+			weixinLogin(){
+				var that = this
+				wx.login({
+					success(res){
+						console.log(res)
+						if (res.errMsg == "login:ok"){
+							uni.request({
+								method: 'POST',
+								url: that.globalData.domainUrl + 'login',
+								data: {code: res.code},
+								header: {'content-type': 'application/x-www-form-urlencoded'},
+								success(res){
+									if (res.statusCode==200) {
+										console.log(res.data)
+										that.globalData.openId = res.data.data.open_id
+									}
+								},
+								fail(res){
+									console.log(res)
+								},
+								complete(res){}
+							})
+						}
+					}
+				})
+			},
 		},
 		onLaunch: function() {
 			var that = this
@@ -61,11 +90,11 @@
 									success(e) {
 										console.log(e)
 										that.globalData.userInfo = e.userInfo
-										uni.setStorage({key: "userInfo", data:e.userInfo})
-										uni.setStorage({key: "encryptedData", data:e.encryptedData})
-										uni.setStorage({key: "iv", data:e.iv})
-										uni.setStorage({key: "rawData", data:e.rawData})
-										uni.setStorage({key: "signature", data:e.signature})
+										uni.setStorageSync({key: "userInfo", data:e.userInfo})
+										uni.setStorageSync({key: "encryptedData", data:e.encryptedData})
+										uni.setStorageSync({key: "iv", data:e.iv})
+										uni.setStorageSync({key: "rawData", data:e.rawData})
+										uni.setStorageSync({key: "signature", data:e.signature})
 									}
 								})
 							}
@@ -73,22 +102,7 @@
 					}
 				})
 			}
-			wx.login({
-				success(res){
-					console.log(res)
-					if (res.code){
-						wx.request({
-							method: 'POST',
-							url: that.domainUrl + 'login',
-							data: {code: res.code},
-							header: {'content-type': 'application/x-www-form-urlencoded'},
-							success(res){},
-							fail(res){},
-							complete(res){}
-						})
-					}
-				}
-			})
+			that.weixinLogin()
 		},
 		onShow: function() {
 			console.log('App Show')

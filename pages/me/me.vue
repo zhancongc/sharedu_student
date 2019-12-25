@@ -220,6 +220,7 @@
 							uni.setStorage({key: "rawData", data:e.rawData})
 							uni.setStorage({key: "signature", data:e.signature})
 							that.hideModal()
+							app.weixinLogin()
 						}
 					}
 				})

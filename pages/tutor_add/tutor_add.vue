@@ -298,9 +298,9 @@
 					url: app.globalData.domainUrl + "store/create",
 					header: {'content-type': 'application/x-www-form-urlencoded'},
 					data: {
+						open_id: app.globalData.openId,
 						name: that.tutorName, // from wechat
 						gender: that.gender, // from wechat
-						avatar: that.avatar, // from wechat
 						phone: that.phone, // from register
 						college: that.college,
 						degree: that.degree,

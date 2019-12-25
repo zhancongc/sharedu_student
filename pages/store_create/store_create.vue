@@ -319,6 +319,7 @@
             url: app.globalData.domainUrl + "store/create",
             header: {'content-type': 'application/x-www-form-urlencoded'},
             data: {
+							open_id: app.globalData.openId,
               invitation_code: that.invitationCode,
               name: that.storeName,
               avatar: that.avatarUrl,
