@@ -24,6 +24,7 @@
 									if (res.statusCode==200) {
 										console.log(res.data)
 										that.globalData.openId = res.data.data.open_id
+										wx.setStorageSync("openId", res.data.data.open_id)
 									}
 								},
 								fail(res){
@@ -102,7 +103,21 @@
 					}
 				})
 			}
-			that.weixinLogin()
+			wx.getStorage({
+				key : "openId",
+				success(res){
+					console.log(res)
+					if (res.errMsg=="getStorage:ok"){
+						that.globalData.openId = res.data
+					}
+				},
+				fail(res){
+					console.log(res)
+					if (res.errMsg=="getStorage:fail data not found"){
+						that.weixinLogin()
+					}
+				}
+			})
 		},
 		onShow: function() {
 			console.log('App Show')

@@ -104,17 +104,9 @@
 			})
 			var that = this
 			const app = getApp()
-			that.storeId = app.globalData.storeId
+			
 			if (that.storeId) {
-				uni.request({
-					method: 'POST',
-					url: app.globalData.domainUrl + 'store/',
-					header: {'content-type': 'application/x-www-form-urlencoded'},
-					data: {store_id: that.storeId},
-					success(res){},
-					fail(res){},
-					complete(res){}
-				})
+				//
 			} else {
 				uni.getSystemInfo({
 					success(res){
@@ -132,6 +124,9 @@
 			uni.hideLoading()
 		},
 		methods: {
+			getStoreByOpenId(){
+				
+			},
 			jumpTo(e, url){
 				uni.navigateTo({
 					url: url
