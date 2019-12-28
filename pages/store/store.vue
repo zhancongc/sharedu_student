@@ -104,9 +104,9 @@
 			})
 			var that = this
 			const app = getApp()
-			
-			if (that.storeId) {
-				//
+			that.openId = wx.getStorageSync("openId")
+			if (that.openId) {
+				that.getStoreByOpenId()
 			} else {
 				uni.getSystemInfo({
 					success(res){
@@ -125,7 +125,28 @@
 		},
 		methods: {
 			getStoreByOpenId(){
-				
+				var that = this
+				const app = getApp()
+				uni.request({
+					method: 'POST',
+					url: app.globalData.domainUrl + 'store/open_id',
+					header: {'content-type': 'application/x-www-form-urlencoded'},
+					data: {open_id: that.openId},
+					success(res){
+						if (res.statusCode == 200){
+								let response = res.data
+								if (response.msg=="ok"){
+									that.storeId = "",
+									that.storeIcon = "",
+									that.storeName = "",
+									that.storeIntro = "",
+									that.lessons = [{},{}]
+								} else { that.storeId=0 }
+						} else { that.storeId=0 }
+					},
+					fail(res){ that.storeId=0 },
+					complete(res){}
+				})
 			},
 			jumpTo(e, url){
 				uni.navigateTo({
