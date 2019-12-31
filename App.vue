@@ -36,6 +36,34 @@
 					}
 				})
 			},
+			updateUserData(){
+				var that = this
+				let encryptedData = uni.getStorageSync("encryptedData")
+				let iv = uni.getStorageSync("iv")
+				let rawData = uni.getStorageSync("rawData")
+				let signature = uni.getStorageSync("signature")
+
+				if (encryptedData && vi && rawData && signature) {
+					console.log("开始上传")
+					uni.request({
+						method: "POST",
+						url: that.globalData.domainUrl + "updateUserData",
+						header: {'content-type': 'application/x-www-form-urlencoded'},
+						data: {
+							open_id: that.globalData.openId,
+							encryptedData: encryptedData,
+							iv: iv,
+							rawData: rawData,
+							signature: signature
+						},
+						success(res){
+							if (res.statusCode==200) {
+								console.log(res.data)
+							}
+						},
+					})
+				}
+			},
 		},
 		onLaunch: function() {
 			var that = this
@@ -103,12 +131,21 @@
 					}
 				})
 			}
+			that.globalData.openId = wx.getStorageSync('openId')
+			// if (that.globalData.openId){
+			// 	that.updateUserData()
+			// } else {
+			// 	that.weixinLogin()
+			// }
 			wx.getStorage({
 				key : "openId",
 				success(res){
 					console.log(res)
 					if (res.errMsg=="getStorage:ok"){
 						that.globalData.openId = res.data
+						if (res.data && that.globalData.rawData) {
+							that.updateUserData()
+						}
 					}
 				},
 				fail(res){

@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<cu-custom bgColor="bg-gradual-pink" :isBack="true">
-			<block slot="backText">返回</block><block slot="content">完善家教信息</block>
+			<block slot="backText">返回</block><block slot="content">填写家教信息</block>
 		</cu-custom>
 		<view class="bg-white padding">
 			<view class="cu-steps">
@@ -13,11 +13,11 @@
 		<block v-if="num == 0">
 			<view class="cu-form-group margin-top">
 				<view class="title">姓名</view>
-				<input placeholder="请输入您的姓名" :value="tutorName" name="name" maxlength="10"></input>
+				<input placeholder="请输入您的姓名" @input="setTutorName" name="name" maxlength="10"></input>
 			</view>
             <view class="cu-form-group">
             	<view class="title">手机</view>
-            	<input placeholder="请输入您的手机号码" :value="phone" name="phone" maxlength="11"></input>
+            	<input placeholder="请输入您的手机号码" @input="setPhone" name="phone" maxlength="11"></input>
                 <view class="cu-capsule radius">
                     <button open-type="getPhoneNumber" @getphonenumber="getPhoneNumber" class="getPhoneNumber">
                     <view class='cu-tag bg-blue '>
@@ -31,11 +31,16 @@
             </view>
 			<view class="cu-form-group">
 				<view class="title">性别</view>
-				<input placeholder="请输入您的性别" :value="gender" name="gender" maxlength="6"></input>
+				<!--input placeholder="请输入您的性别" @input="setGender" name="gender" maxlength="6"></input-->
+				<picker @change="genderChange" :range="gender" name="gender" maxlength="1">
+				    <view class="picker" style="text-align: left;">
+				        {{genderIndex>-1?gender[genderIndex]:'请选择性别'}}
+				    </view>
+				</picker>
 			</view>
 			<view class="cu-form-group">
 			    <view class="title">城市</view>
-			    <picker mode="region" @change="RegionChange" :value="region" name="region" maxlength="20">
+			    <picker mode="region" @change="RegionChange" name="region" maxlength="20">
 			        <view class="picker" style="text-align: left;">
 			            {{region[0]}}，{{region[1]}}，{{region[2]}}
 			        </view>
@@ -43,7 +48,7 @@
 			</view>
 			<view class="cu-form-group">
 			    <view class="title">学历</view>
-			    <picker @change="degreeChange" :range="degree" :value="degree" name="degree" maxlength="2">
+			    <picker @change="degreeChange" :range="degree"  name="degree" maxlength="2">
 			        <view class="picker" style="text-align: left;">
 			            {{degreeIndex>-1?degree[degreeIndex]:'请选择学历'}}
 			        </view>
@@ -51,7 +56,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">学校</view>
-				<input placeholder="请输入您毕业或在读的学校" :value="college" name="college" maxlength="20"></input>
+				<input placeholder="请输入您毕业或在读的学校" @input="setCollege" name="college" maxlength="20"></input>
 			</view>
 		</block>
 		<block v-if="num == 1">
@@ -123,9 +128,10 @@
 				// 基本信息
 				tutorName: '', // from wechat
 				avatar: '', // from wechat
-				gender: '', // from wechat
 				phone: '', // from register
 				college: '',
+				gender: ['女', '男'],
+				genderIndex: -1,
 				degree: '',
 				region: ['北京市', '北京市', '东城区'],
 				degreeIndex: -1,
@@ -165,18 +171,18 @@
 					this.num = this.num - 1;
 				}
 			},
+			setTutorName(e){this.tutorName=e.detail.value},
+			setPhone(e){this.phone=e.detail.value},
+			setCollege(e){this.college=e.detail.value},
 			getPhoneNumber (e) {
 					console.log(e);
 					if (e.type=="getphonenumber"){
 
 					}
 			},
-			degreeChange(e) {
-				this.degreeIndex = e.detail.value;
-			},
-			RegionChange(e) {
-			    this.region = e.detail.value;
-			},
+			genderChange(e) {this.genderIndex = e.detail.value},
+			degreeChange(e) {this.degreeIndex = e.detail.value;},
+			RegionChange(e) {this.region = e.detail.value;},
 			ChooseImage(e, type) {
 				var that = this
 				const app = getApp()
@@ -300,7 +306,7 @@
 					data: {
 						open_id: app.globalData.openId,
 						name: that.tutorName, // from wechat
-						gender: that.gender, // from wechat
+						gender: that.genderIndex, // from wechat
 						phone: that.phone, // from register
 						college: that.college,
 						degree: that.degree,
