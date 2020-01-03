@@ -301,18 +301,18 @@
 				})
 				uni.request({
 					method: "POST",
-					url: app.globalData.domainUrl + "store/create",
-					header: {'content-type': 'application/x-www-form-urlencoded'},
+					url: app.globalData.domainUrl + "tutor/create",
+					header: {"Content-Type":"application/x-www-form-urlencoded; charset=UTF-8"},
 					data: {
 						open_id: app.globalData.openId,
 						name: that.tutorName, // from wechat
 						gender: that.genderIndex, // from wechat
 						phone: that.phone, // from register
 						college: that.college,
-						degree: that.degree,
+						degree: that.degreeIndex,
 						city: that.region,
 						id_image_list: that.idCardImageListUrl,
-						cert_list: that.certificateImageListUrl,
+						cert_image: that.certificateImageListUrl,
 					},
 					success(res){
 						console.log(res)
