@@ -131,6 +131,10 @@
             "path" : "pages/store_detail/store_detail",
             "style" : {}
         }
+        ,{
+            "path" : "pages/myTutor/myTutor",
+            "style" : {}
+        }
     ],
 	"permission": {
 	  "scope.userLocation": {

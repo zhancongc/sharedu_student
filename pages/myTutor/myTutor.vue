@@ -1,17 +1,17 @@
-<!--info>店主看到的店铺页<info-->
+<!--info><info-->
 <template>
 	<view>
 		<cu-custom bgColor="bg-gradual-pink" :isBack="true">
-			<block slot="backText">返回</block><block slot="content">店铺</block>
+			<block slot="backText">返回</block><block slot="content">家教</block>
 		</cu-custom>
-    <view v-if="storeList.length == 0" class="padding-xl" style="margin-top: 460upx; margin-bottom: 460upx;">
+    <view v-if="tutorList.length == 0" class="padding-xl" style="margin-top: 460upx; margin-bottom: 460upx;">
 		<!-- <view v-if="!storeId" class="padding-xl" :style="'margin-top:' + topBorder + 'px;'"> -->
 			<button class="cu-btn block bg-green lg"
 				@click="jumpTo($event, '/pages/tutor_add/tutor_add')">
 				<!--text class="cuIcon-upload"></text-->
-				创建店铺</button>
+				注册成为家教</button>
 		</view>
-		<view v-if="storeList.length>0" class="cu-card case no-card">
+		<view v-if="tutorList.length>0" class="cu-card case no-card">
 			<view class="cu-item" style="justify-content: center; display: flex;">
 					<view class="cu-avatar xl round" style="margin: 30upx 0upx" 
 							:style="'background-image: url('+ storeIcon +')'"></view>
@@ -62,9 +62,9 @@
 		data() {
 			return {
 				topBorder: 0,
-				storeList: [
+				tutorList: [
 					{
-						storeId: "",
+						tutor_id: "",
 						icon: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
 						name: "hero alliance",
 						intro: "老火不知老，尚欲骄新秋。金稚力未胜，如儿方唧啾。稍养浩然气，终当凌斗牛。巧夕乞巧者，稚儿辈可羞。老拙眼尚明，却笑群目幽。造物真大巧，容得智力不。巧亦不自各，变化神鬼惊。夏将烘炉铸，至秋成金城。金城包宇宙，万宝藏难明。今夕且对月，酌酒与子盟。仁熟如美种，由我独善耕。金声而玉振，秋乃集大成。",

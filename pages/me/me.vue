@@ -63,7 +63,7 @@
 		</view>
 		<view class="cu-list menu card-menu sm-border">
 			<view class="cu-item">
-				<view class="content" @click="jumpTo($event, toTutorAddUrl)">
+				<view class="content" @click="jumpTo($event, toMyTutorUrl)">
 					<text class="cuIcon-friendadd text-black"></text>
 					<text class="text-black">注册成为家教</text>
 				</view>
@@ -141,7 +141,7 @@
 				toBillsUrl: '/pages/bills/bills',
 				toLessonAddUrl: '/pages/lesson_add/lesson_add',
 				//toTutorWantedUrl: '/pages/tutor_wanted/tutor_wanted',
-				toTutorAddUrl: '/pages/tutor_add/tutor_add',
+				toMyTutorUrl: '/pages/myTuor/myTutor',
 				toStoreUrl: '/pages/store/store',
 				toAboutUrl: '/pages/about/about',
 				toIndexUrl: '/pages/index/index',
