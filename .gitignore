@@ -1,0 +1,10 @@
+*.pyc
+*.iml
+.idea/
+test/
+migrations/
+.pytest_cache
+allure-report/
+htmlcov/
+venv/
+unpackage/
