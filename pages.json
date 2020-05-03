@@ -83,17 +83,17 @@
             "path": "pages/plugin/verticalnav",
             "style": {}
         },{
-		    "path" : "pages/store_create/store_create",
+		    "path" : "pages/storeCreate/storeCreate",
 		    "style" : {}
 		},{
-            "path" : "pages/lesson_add/lesson_add",
+            "path" : "pages/lessonAdd/lessonAdd",
             "style" : {}
         },{
-            "path" : "pages/tutor_add/tutor_add",
+            "path" : "pages/tutorAdd/tutorAdd",
             "style" : {}
         }
         ,{
-            "path" : "pages/tutor_wanted/tutor_wanted",
+            "path" : "pages/tutorWanted/tutorWanted",
             "style" : {}
         }
         ,{
@@ -120,19 +120,27 @@
             "style" : {}
         }
         ,{
-            "path" : "pages/lesson_detail/lesson_detail",
+            "path" : "pages/lessonDetail/lessonDetail",
             "style" : {}
         }
         ,{
-            "path" : "pages/bill_detail/bill_detail",
+            "path" : "pages/billDetail/billDetail",
             "style" : {}
         }
         ,{
-            "path" : "pages/store_detail/store_detail",
+            "path" : "pages/storeDetail/storeDetail",
             "style" : {}
         }
         ,{
             "path" : "pages/myTutor/myTutor",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/myStore/myStore",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/tutorDetail/tutorDetail",
             "style" : {}
         }
     ],
@@ -158,17 +166,17 @@
         "list": [
 			{
 			    "name": "create store", //模式名称
-				"path": "pages/store_create/store_create", //启动页面
+				"path": "pages/storeCreate/storeCreate", //启动页面
 				"query": "" //启动参数
 			},
 			{
                 "name": "add lesson", //模式名称
-                "path": "pages/lesson_add/lesson_add", //启动页面
+                "path": "pages/lessonAdd/lessonAdd", //启动页面
                 "query": "" //启动参数
             },
 			{
 				"name": "tutor add", 
-				"path": "pages/tutor_add/tutor_add",
+				"path": "pages/tutorAdd/tutorAdd",
 				"query": ""
 			},
 			{
@@ -183,12 +191,12 @@
 			},
 			{
 				"name": "lesson detail", 
-				"path": "pages/lesson_detail/lesson_detail",
+				"path": "pages/lessonDetail/lessonDetail",
 				"query": ""
 			},
 			{
 				"name": "bill detail", 
-				"path": "pages/bill_detail/bill_detail",
+				"path": "pages/billDetail/billDetail",
 				"query": ""
 			},
             {

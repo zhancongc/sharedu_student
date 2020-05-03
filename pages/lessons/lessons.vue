@@ -169,7 +169,7 @@
 			},
 			toLessonDetail(e, tid){
 				uni.navigateTo({
-					url: '/pages/lesson_detail/lesson_detail?tid='+tid
+					url: '/pages/lessonDetail/lessonDetail?tid='+tid
 				})
 			},
 			showModal(e) {

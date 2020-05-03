@@ -75,7 +75,7 @@
 				menuArrow: true,
 				catalog: [{
 					title: '添加课程',
-					url: '/pages/lesson_add/lesson_add',
+					url: '/pages/lessonAdd/lessonAdd',
 				},{
 					title: '请家教',
 					url: '/pages/tutor_wanted/tutor_wanted',

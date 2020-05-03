@@ -171,7 +171,7 @@
 				console.log("from menu")
 			}
 			return {
-				path: '/pages/lesson_detail/lesson_detail?lesson_id='+this.lessonId,
+				path: '/pages/lessonDetail/lessonDetail?lesson_id='+this.lessonId,
 				title: this.lessonName,
 				imageUrl: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg'
 			}
@@ -213,7 +213,7 @@
 					imageUrl: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
 					miniProgram: {
 						id: 'wxd4fcc10a3bfe4d99',
-						path: 'pages/lesson_detail/lesson_detail',
+						path: 'pages/lessonDetail/lessonDetail',
 						type: 0,
 						webUrl: 'http://uniapp.dcloud.io'
 					},

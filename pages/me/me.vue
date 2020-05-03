@@ -62,13 +62,25 @@
 			</view>
 		</view>
 		<view class="cu-list menu card-menu sm-border">
-			<view class="cu-item">
-				<view class="content" @click="jumpTo($event, toMyTutorUrl)">
+			<view class="cu-item" v-if="tutor_id === 0">
+				<view class="content" @click="jumpTo($event, toTutorAddUrl)">
 					<text class="cuIcon-friendadd text-black"></text>
-					<text class="text-black">注册成为家教</text>
+					<text class="text-black">成为家教</text>
 				</view>
 			</view>
-			<view class="cu-item">
+			<view class="cu-item" v-if="tutor_id !== 0">
+				<view class="content" @click="jumpTo($event, toMyTutorUrl)">
+					<text class="cuIcon-friendadd text-black"></text>
+					<text class="text-black">我的简历</text>
+				</view>
+			</view>
+			<view class="cu-item" v-if="store_id === 0">
+				<view class="content" @click="jumpTo($event, toStoreCreateUrl)">
+					<text class="cuIcon-shop text-black"></text>
+					<text class="text-black">注册店铺</text>
+				</view>
+			</view>
+			<view class="cu-item" v-if="store_id !== 0">
 				<view class="content" @click="jumpTo($event, toStoreUrl)">
 					<text class="cuIcon-shop text-black"></text>
 					<text class="text-black">我的店铺</text>
@@ -138,11 +150,15 @@
 				// nickname: '正义天使 凯尔',
 				avatarUrl: '',
 				nickname: '',
+				tutor_id: 0,
+				store_id: 0,
 				toBillsUrl: '/pages/bills/bills',
-				toLessonAddUrl: '/pages/lesson_add/lesson_add',
+				toLessonAddUrl: '/pages/lessonAdd/lessonAdd',
 				//toTutorWantedUrl: '/pages/tutor_wanted/tutor_wanted',
+				toTutorAddUrl: '/pages/tutorAdd/tutorAdd',
 				toMyTutorUrl: '/pages/myTuor/myTutor',
 				toStoreUrl: '/pages/store/store',
+				toStoreCreateUrl: '/pages/storeCreate/storeCreate',
 				toAboutUrl: '/pages/about/about',
 				toIndexUrl: '/pages/index/index',
 			}
@@ -194,8 +210,17 @@
 		onReady() {
 			uni.hideLoading()
 		},
-		onShow() {},
+		onShow() {
+			this.freshTutor()
+			this.freshStore()
+		},
 		methods: {
+			freshTutor(e){
+				this.tutor_id = getApp().globalData.tutorId
+			},
+			freshStore(e){
+				this.store_id = getApp().globalData.storeId
+			},
 			showModal(e) {
 				this.modalName = e.currentTarget.dataset.target
 			},

@@ -4,7 +4,7 @@
 		globalData: {
 			tutorId: 0,
 			storeId: 0,
-			domainUrl: "http://127.0.0.1:8000/",
+			domainUrl: "http://127.0.0.1/",
 			userInfo: "",
 			openId: '',
 		},
