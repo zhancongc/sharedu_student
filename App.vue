@@ -25,6 +25,7 @@
 										console.log(res.data)
 										that.globalData.openId = res.data.data.open_id
 										wx.setStorageSync("openId", res.data.data.open_id)
+										that.checkUserInfo()
 									}
 								},
 								fail(res){
@@ -36,13 +37,36 @@
 					}
 				})
 			},
-			updateUserData(){
+			checkUserInfo(){
 				var that = this
-				let encryptedData = uni.getStorageSync("encryptedData")
-				let iv = uni.getStorageSync("iv")
-				let rawData = uni.getStorageSync("rawData")
-				let signature = uni.getStorageSync("signature")
-
+				that.globalData.userInfo = uni.getStorageSync('userInfo')
+				if (that.globalData.userInfo == "") {
+					uni.getSetting({
+						success(res){
+							console.log(res)
+							if (res.errMsg=="getSetting:ok"){
+								if (res.authSetting['scope.userInfo']) {
+									uni.getUserInfo({
+										success(e) {
+											console.log(e)
+											that.globalData.userInfo = e.userInfo
+											uni.setStorage({key: "userInfo", data:e.userInfo})
+											uni.setStorage({key: "encryptedData", data:e.encryptedData})
+											uni.setStorage({key: "iv", data:e.iv})
+											uni.setStorage({key: "rawData", data:e.rawData})
+											uni.setStorage({key: "signature", data:e.signature})
+											console.log('上传用户数据')
+											that.updateUserData(e.encryptedData, e.iv, e.rawData, e.signature)
+										}
+									})
+								}
+							}
+						}
+					})
+				}
+			},
+			updateUserData(encryptedData, iv, rawData, signature){
+				var that = this
 				if (encryptedData && vi && rawData && signature) {
 					console.log("开始上传")
 					uni.request({
@@ -108,53 +132,12 @@
 				{title: '墨黑',name: 'black',color: '#333333'},
 				{title: '雅白',name: 'white',color: '#ffffff'},
 			]
-			that.globalData.userInfo = uni.getStorageSync('userInfo')
-			if (that.globalData.userInfo == "") {
-				uni.getSetting({
-					success(res){
-						console.log(res)
-						if (res.errMsg=="getSetting:ok"){
-							if (res.authSetting['scope.userInfo']) {
-								uni.getUserInfo({
-									success(e) {
-										console.log(e)
-										that.globalData.userInfo = e.userInfo
-										uni.setStorageSync({key: "userInfo", data:e.userInfo})
-										uni.setStorageSync({key: "encryptedData", data:e.encryptedData})
-										uni.setStorageSync({key: "iv", data:e.iv})
-										uni.setStorageSync({key: "rawData", data:e.rawData})
-										uni.setStorageSync({key: "signature", data:e.signature})
-									}
-								})
-							}
-						}
-					}
-				})
-			}
-			that.globalData.openId = wx.getStorageSync('openId')
+			that.weixinLogin()
 			// if (that.globalData.openId){
 			// 	that.updateUserData()
 			// } else {
 			// 	that.weixinLogin()
 			// }
-			wx.getStorage({
-				key : "openId",
-				success(res){
-					console.log(res)
-					if (res.errMsg=="getStorage:ok"){
-						that.globalData.openId = res.data
-						if (res.data && that.globalData.rawData) {
-							that.updateUserData()
-						}
-					}
-				},
-				fail(res){
-					console.log(res)
-					if (res.errMsg=="getStorage:fail data not found"){
-						that.weixinLogin()
-					}
-				}
-			})
 		},
 		onShow: function() {
 			console.log('App Show')
